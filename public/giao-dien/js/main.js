@@ -14,7 +14,7 @@
 	***********************/ 
 
 	var mainMenuNav = $('.main-navigation');
-	mainMenuNav.meanmenu({
+	mainMenuNav .meanmenu({
 	    meanScreenWidth: '991',
 	    meanMenuContainer: '.mobile-menu',
 	    meanMenuClose: '<span class="menu-close"></span>',

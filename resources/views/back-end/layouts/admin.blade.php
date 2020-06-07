@@ -10,6 +10,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   @include('back-end.layouts._share.style')
   @yield('style')
+  <style>
+  .navbar-expand .navbar-nav .dropdown-menu {
+    left: -120px ;
+}
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

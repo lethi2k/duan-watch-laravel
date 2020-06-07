@@ -9,7 +9,7 @@ img{
 @section('content')
 <div class="card card-primary">
 <div class="card-header">
-    <h3 class="card-title">Hiện có {{count($Cate)}} Hãng Đồng Hồ</h3>
+    <h3 class="card-title">Hiện có  Hãng Đồng Hồ</h3>
 </div>
 <form class="form-inline ml-5 my-3">
     <div class="input-group input-group-sm bg-success">
@@ -19,24 +19,31 @@ img{
             </div>
     </div>
 </form>
+
 <table class="table table-stripped">
         <thead>
             <th>ID</th>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Logo</th>
+            <th>Danh Mục Bài Viết</th>
+            <th>Tên Bài Viết</th>
+            <th style ="width:30%">Mô Tả</th>
+            <th>Ảnh</th>
+            <th>User</th>
+            <th>Nội Dung</th>
             <th>Công Cụ</th>
         </thead>
         <tbody>
     @foreach($Cate as $print)
             <tr>
             <td>{{$print->id}}</td>
-            <td>{{$print->name}}</td>
-            <td>{{$print->country}}</td>
-            <td><img src="{{asset('') .$print->logo}}" alt=""></td>
+            <td>{{$print->CateBlog->cate_name}}</td>
+            <td>{{$print->name_blog}}</td>
+            <td>{{$print->meta}}</td>
+            <td><img src="{{asset('') .'giao-dien/images/blog/'.$print->images}}" alt=""></td>
+            <td>{{$print->user}}</td>
+            <td><a href="{{asset('').'admin/blog/chitiet/'.$print->id}}"><button type="button" class="btn btn-sm btn-success">Chi Tiết</button></a></td>
                <td>
-                <a href="{{asset('').'admin/trademark/edit/'.$print->id}}" class="btn btn-sm btn-primary"><i class="fas fa-wrench"></i></a> &nbsp;
-                <a href="{{asset('').'admin/trademark/delete/'.$print->id}}" class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>
+                <a href="{{asset('').'admin/blog/edit/'.$print->id}}" class="btn btn-sm btn-primary"><i class="fas fa-wrench"></i></a> &nbsp;
+                <a href="{{asset('').'admin/blog/delete/'.$print->id}}" class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
       @endforeach

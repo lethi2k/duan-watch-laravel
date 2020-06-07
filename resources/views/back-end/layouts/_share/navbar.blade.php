@@ -6,17 +6,6 @@
         </li>
     </ul>
 
-    <!-- SEARCH FORM -->
-    <form class="form-inline ml-5" method="get" id="searchform" action="">
-        <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="text" placeholder="Tìm Kiếm Theo Danh Mục" aria-label="Search" name="brand">
-            <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </form>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -105,6 +94,48 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
+
+
+        <li class="dropdown user user-menu open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+              <img src="{{asset('') .'giao-dien/images/user/'.Auth::user()->logo}}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{Auth::user()->username}}</span>
+            </a>
+           
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="{{asset('') .'giao-dien/images/user/'.Auth::user()->logo}}" class="img-circle" alt="User Image">
+
+                <p>
+                  {{ Auth::user()->username }}
+                  <small>{{ Auth::user()->created_at }}</small>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                <div class="col-xs-12 text-center">
+                    <a href="#">{{ Auth::user()->address }}</a>
+                  </div>
+                  <div class="col-xs-12 text-center">
+                    <a href="#">{{ Auth::user()->email }}</a>
+                  </div>
+
+                </div>
+                <!-- /.row -->
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                
+                <div class="pull-right">
+                  <a href="admin/dangxuat" class="btn btn-default btn-flat">Đăng Xuất</a>
+                </div>
+              </li>
+            </ul>
+            
+          </li>
+         
         <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
                 <i class="fas fa-th-large"></i>

@@ -101,13 +101,6 @@ p {
     width: 800px;
     
 }
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0; }
-
-input[type=number] {
-  -moz-appearance: textfield; }
 
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
   color: #afafaf; }
@@ -6764,7 +6757,7 @@ User Dashboard tab
     -webkit-flex-basis: 50%;
     -moz-flex-basis: 50%;
     -ms-flex-preferred-size: 50%;
-    flex-basis: 50%; }
+    flex-basis: 85%; }
 
 .product-details-review-wrap .review__author {
   text-transform: capitalize;

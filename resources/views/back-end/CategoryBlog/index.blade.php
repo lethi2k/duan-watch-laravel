@@ -19,6 +19,9 @@ img{
             </div>
     </div>
 </form>
+
+
+
 <table class="table table-stripped">
         <thead>
             <th>ID</th>

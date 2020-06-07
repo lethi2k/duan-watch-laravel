@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2020 at 04:05 PM
+-- Generation Time: May 29, 2020 at 07:34 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.2
 
@@ -55,9 +55,11 @@ INSERT INTO `advertisement` (`id`, `name`, `images`, `title`, `content`, `price`
 CREATE TABLE `bill` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `phone_number` int(11) NOT NULL,
   `type_payment` int(11) NOT NULL,
+  `note` text NOT NULL,
   `idct` int(11) NOT NULL,
   `idoder` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -77,6 +79,13 @@ CREATE TABLE `blog` (
   `images` varchar(200) NOT NULL,
   `user` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`id`, `cate_id`, `name_blog`, `meta`, `content`, `images`, `user`) VALUES
+(1, 1, 'ahskdasdjas', 'ạdhajsd', 'ạdkgaskdash', 'kahsdlasd', 'admin');
 
 -- --------------------------------------------------------
 
@@ -298,6 +307,7 @@ INSERT INTO `trademark` (`id`, `name`, `country`, `logo`) VALUES
 
 CREATE TABLE `users` (
   `username` varchar(200) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `logo` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `địa chỉ` varchar(255) NOT NULL,
@@ -313,8 +323,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`username`, `logo`, `email`, `địa chỉ`, `pass`, `level`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-('admin', 'ád', '12sad', '1231wadeas', 'adac', 0, 0, NULL, NULL, NULL);
+INSERT INTO `users` (`username`, `name`, `logo`, `email`, `địa chỉ`, `pass`, `level`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+('admin', '', 'ád', '12sad', '1231wadeas', 'adac', 0, 0, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -433,7 +443,7 @@ ALTER TABLE `bill`
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `category_blog`

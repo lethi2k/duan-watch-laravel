@@ -58,7 +58,7 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">Close</span>
+                            <span aria-hidden="true">Đóng</span>
                         </button>
                         <div class="container">
                             <div class="row">
@@ -248,7 +248,7 @@
                                 </div>
                                 <div class="col-lg-7 col-md-6">
                                     <div class="modal-box product">
-                                        <h3 class="product-title">Acer Aspire E 15</h3>
+                                        <h3 class="product-title">ĐỒNG HỒ JACQUES LEMANS</h3>
                                         <div class="ratings mb--20">
                                             <i class="fa fa-star rated"></i>
                                             <i class="fa fa-star rated"></i>
@@ -257,23 +257,22 @@
                                             <i class="fa fa-star"></i>
                                         </div>
                                         <ul class="product-detail-list list-unstyled mb--20">
-                                            <li>Brand: <a
-                                                    href="https:/demo.hasthemes.com/mirora-preview/mirora/index.html">Apple</a>
-                                            </li>
-                                            <li>Product Code: Watches</li>
-                                            <li>Reward Points: 600</li>
-                                            <li>Availability: In Stock</li>
+                                        <li class="my-5">Thương Hiệu: <a href="">Apple</a></li>
+                                        <li class="my-5">Nguồn Gốc: Watches</li>
+                                        <li class="my-5">Loại Máy: Watches</li>
+                                        <li class="my-5">Giới Tính: Nam</li>
+                                        <li class="my-5">Bảo Hành: 2 Năm</li>
                                         </ul>
                                         <div class="product-price border-bottom pb--20 mb--20">
                                             <span class="regular-price">$100.50</span>
                                             <span class="sale-price">$98.98</span>
                                         </div>
                                         <div class="product-options mb--20">
-                                            <h3>Available Options</h3>
+                                            <h3>Tùy Chọn</h3>
                                             <div class="form-group">
-                                                <label><sup>*</sup>Color Switch</label>
+                                                <label class ="my-3"><sup>*</sup>Chọn màu</label>
                                                 <select>
-                                                    <option> --- Please Select --- </option>
+                                                    <option> --- màu sắc--- </option>
                                                     <option>Black</option>
                                                     <option>Blue</option>
                                                 </select>
@@ -289,16 +288,10 @@
                                                     <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
                                                 </div>
                                                 <button type="button" class="btn btn-medium btn-style-2 add-to-cart">
-                                                    Add To Cart
+                                                    Thêm Vào Giỏ Hàng
                                                 </button>
                                             </div>
-                                            <div class="product-action-bottom">
-                                                <a
-                                                    href="https:/demo.hasthemes.com/mirora-preview/mirora/wishlist.html">+Add
-                                                    to wishlist</a>
-                                                <a href="https:/demo.hasthemes.com/mirora-preview/mirora/compare.html">+Add
-                                                    to compare</a>
-                                            </div>
+                                           
                                         </div>
                                         <p class="product-tags">
                                             Tags: <a

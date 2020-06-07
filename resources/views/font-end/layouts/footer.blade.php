@@ -1,43 +1,44 @@
+@foreach($company as $showcompany)
 <footer class="footer border-top ptb--40 ptb-md--30">
             <div class="container">
                 <div class="row mb--40 mb-md--30">
                     <div class="col-lg-4 col-md-6 mb-md--30">
                         <div class="footer-widget">
-                            <h3 class="widget-title">About Mirora</h3>
+                            <h3 class="widget-title">Về Chúng Tôi</h3>
                             <div class="widget-content mb--20">
-                                <p>Address: 123 Main Street, Anytown, <br> CA 12345 - USA.</p>
-                                <p>Phone: (012) 800 456 789</p>
-                                <p>Fax: (012) 800 456 789</p>
-                                <p>Email: Contact@plazathemes.com</p>
+                                <p>Địa Chỉ : {!! $showcompany ->address!!}</p>
+                                <p>Điện Thoại: 0986966813</p>
+                                
+                                <p>Email: {!! $showcompany ->email!!}</p>
                             </div>
                             <ul class="social social-round">
                                 <li class="social__item">
                                     <a class="social__link"
-                                        href="https://demo.hasthemes.com/mirora-preview/mirora/facebook.com">
+                                        href="https://www.facebook.com/thi.le.925059">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </li>
                                 <li class="social__item">
                                     <a class="social__link"
-                                        href="https://demo.hasthemes.com/mirora-preview/mirora/twitter.com">
+                                        href="https://twitter.com">
                                         <i class="fa fa-twitter"></i>
                                     </a>
                                 </li>
                                 <li class="social__item">
                                     <a class="social__link"
-                                        href="https://demo.hasthemes.com/mirora-preview/mirora/youtube.com">
+                                        href="https://www.youtube.com/channel/UC91pe3cphfx2D4KnkDTy1uw?view_as=subscriber">
                                         <i class="fa fa-youtube"></i>
                                     </a>
                                 </li>
                                 <li class="social__item">
                                     <a class="social__link"
-                                        href="https://demo.hasthemes.com/mirora-preview/mirora/instagram.com">
+                                        href="https://instagram.com">
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>
                                 <li class="social__item">
                                     <a class="social__link"
-                                        href="https://demo.hasthemes.com/mirora-preview/mirora/plus.google.com">
+                                        href="https://google.com">
                                         <i class="fa fa-google-plus"></i>
                                     </a>
                                 </li>
@@ -46,45 +47,37 @@
                     </div>
                     <div class="col-lg-2 col-md-6 mb-md--30">
                         <div class="footer-widget">
-                            <h3 class="widget-title">Information</h3>
+                            <h3 class="widget-title">Thông Tin</h3>
                             <ul class="widget-menu">
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">About Us</a>
+                                <li><a href="{{asset('') . ''}}">Về Chúng Tôi</a>
                                 </li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Delivery
-                                        Information</a></li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Privacy
-                                        Policy</a></li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Terms &amp;
-                                        Conditions</a></li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Gift
-                                        Certificates</a></li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Contact Us</a>
+                                <li><a href="{{asset('') . ''}}">Thông tin giao hàng</a></li>
+                                <li><a href="{{asset('') . ''}}">Chính sách bảo mật</a></li>
+                                <li><a href="{{asset('') . ''}}">Điều khoản và điều kiện</a></li>
+                                <li><a href="{{asset('') . ''}}">Phiếu quà tặng</a></li>
+                                <li><a href="{{asset('') . ''}}">Liên hệ chúng tôi</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6 mb-sm--30">
                         <div class="footer-widget">
-                            <h3 class="widget-title">Extras</h3>
+                            <h3 class="widget-title">Ngoài Ra</h3>
                             <ul class="widget-menu">
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Brands</a>
-                                </li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Gift
-                                        Certificates</a></li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Affiliate</a>
-                                </li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Specials</a>
-                                </li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">My Account</a>
-                                </li>
-                                <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Returns</a>
-                                </li>
+                            <li><a href="{{asset('') . ''}}">Trang Chủ</a></li>
+                            <li><a href="{{asset('') . ''}}">Sản Phẩm</a>
+                            </li>
+                            <li><a href="{{asset('') . ''}}">Tin Tức</a></li>
+                            <li><a href="{{asset('') . ''}}">Về Chúng Tôi</a>
+                            </li>
+                            <li><a href="{{asset('') . ''}}">Dịch Vụ $ Bảo Hành</a>
+                            </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-widget">
-                            <h3 class="widget-title">Custom Products</h3>
+                            <h3 class="widget-title">Sản Phẩm Tùy Chỉnh</h3>
                             <div class="widget-product">
                                 <div class="product">
                                     <div class="product-img">
@@ -147,26 +140,25 @@
                 <div class="row mb--40 mb-md--30">
                     <div class="col-12">
                         <ul class="footer-menu">
-                            <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Home</a></li>
-                            <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Online Store</a>
+                            <li><a href="{{asset('') . ''}}">Trang Chủ</a></li>
+                            <li><a href="{{asset('') . ''}}">Sản Phẩm</a>
                             </li>
-                            <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Promotion</a></li>
-                            <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Privacy Policy</a>
+                            <li><a href="{{asset('') . ''}}">Tin Tức</a></li>
+                            <li><a href="{{asset('') . ''}}">Về Chúng Tôi</a>
                             </li>
-                            <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Terms Of Use</a>
+                            <li><a href="{{asset('') . ''}}">Dịch Vụ $ Bảo Hành</a>
                             </li>
-                            <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Sitemap</a></li>
-                            <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Support</a></li>
-                            <li><a href="https://demo.hasthemes.com/mirora-preview/mirora/index.html">Contacts</a></li>
+                            
                         </ul>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 text-center">
-                        <p class="copyright-text">Copyright © 2018 <a href="">HasTech</a> .All Right Reserved.</p>
-                        <img src="./giao-dien/images//payment.png"
+                        <p class="copyright-text">Copyright © 2020 <a href="">{!! $showcompany ->name!!}</a> .All Right Reserved.</p>
+                        <img src="./giao-dien/images/payment.png"
                             alt="payment">
                     </div>
                 </div>
             </div>
         </footer>
+        @endforeach

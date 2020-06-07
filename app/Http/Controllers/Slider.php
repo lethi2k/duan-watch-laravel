@@ -62,11 +62,12 @@ class Slider extends Controller
     $model->name = $request->name;
     $model->title = $request->title;
     $model->content = $request->area1;
+    $model->status = $request ->status;
     $image = $_FILES['image'];
     $filename = ""; 
     if($image['size'] > 0){
-            $filename = "giao-dien/images/" . uniqid() . '-' . $image['name'];
-            move_uploaded_file($image['tmp_name'], $filename);
+            $filename =$image['name'];
+            move_uploaded_file($image['tmp_name'], "giao-dien/images/slider/".$filename);
     }
     $model->images = $filename;
     $model->save();
@@ -113,11 +114,12 @@ class Slider extends Controller
         $model->name = $request->name;
         $model->title = $request->title;
         $model->content = $request->area1;
+        $model->status = $request ->status;
         $image = $_FILES['image'];
         $filename = $model->images;
         if($image['size'] > 0){
-                $filename = "giao-dien/images/" . uniqid() . '-' . $image['name'];
-                move_uploaded_file($image['tmp_name'], $filename);
+                $filename = $image['name'];
+                move_uploaded_file($image['tmp_name'], "giao-dien/images/slider/" .$filename);
         }
         $model->images = $filename;
         $model->save();

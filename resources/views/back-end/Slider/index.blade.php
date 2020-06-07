@@ -26,6 +26,7 @@ img{
             <th>title</th>
             <th>Logo</th>   
             <th>content</th>
+            <th>Trạng Thái</th>
             <th>Công Cụ</th>
         </thead>
         <tbody>
@@ -34,8 +35,15 @@ img{
             <td>{{$print->id}}</td>
             <td>{{$print->name}}</td>
             <td>{{$print->title}}</td>
-            <td><img src="{{asset('') .$print->images}}" alt=""></td>
-            <td>{{$print->content}}</td>
+            <td><img src="{{asset('') .'giao-dien/images/slider/'.$print->images}}" alt=""></td>
+            <td>{!! $print->content !!}</td>
+            <td><a href="{{asset('').'admin/slider/delete/'.$print->id}}" class="btn btn-sm btn-success">
+            @if($print -> status ==0)
+            Ẩn
+            @else
+            Hiện
+            @endif
+            </a></td>
                <td>
                 <a href="{{asset('').'admin/slider/edit/'.$print->id}}" class="btn btn-sm btn-primary"><i class="fas fa-wrench"></i></a> &nbsp;
                 <a href="{{asset('').'admin/slider/delete/'.$print->id}}" class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>

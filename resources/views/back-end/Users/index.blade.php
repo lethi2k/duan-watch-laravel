@@ -9,7 +9,7 @@ img{
 @section('content')
 <div class="card card-primary">
 <div class="card-header">
-    <h3 class="card-title">Hiện có {{count($Cate)}} Hãng Đồng Hồ</h3>
+    <h3 class="card-title">Hiện có Hãng Đồng Hồ</h3>
 </div>
 <form class="form-inline ml-5 my-3">
     <div class="input-group input-group-sm bg-success">
@@ -21,22 +21,28 @@ img{
 </form>
 <table class="table table-stripped">
         <thead>
-            <th>ID</th>
+            <th>Username</th>
             <th>Name</th>
-            <th>Country</th>
+            <th>Email</th>
+            <th>Địa Chỉ</th>
+            <th>Mật Khẩu</th>
+            <th>Cấp Bậc</th>
             <th>Logo</th>
             <th>Công Cụ</th>
         </thead>
         <tbody>
-    @foreach($Cate as $print)
+    @foreach($data as $print)
             <tr>
-            <td>{{$print->id}}</td>
+            <td>{{$print->username}}</td>
             <td>{{$print->name}}</td>
-            <td>{{$print->country}}</td>
-            <td><img src="{{asset('') .$print->logo}}" alt=""></td>
+            <td>{{$print->email}}</td>
+            <td>{{$print->address}}</td>
+            <td>{{$print->password}}</td>
+            <td>@if($print->level ==1)Quản trị @endif @if($print->level ==0)Thành Viên @endif</td>
+            <td><img src="{{asset('') .'giao-dien/images/user/'.$print->logo}}" alt="" style="width:50px"></td>
                <td>
-                <a href="{{asset('').'admin/trademark/edit/'.$print->id}}" class="btn btn-sm btn-primary"><i class="fas fa-wrench"></i></a> &nbsp;
-                <a href="{{asset('').'admin/trademark/delete/'.$print->id}}" class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>
+                <a href="{{asset('').'admin/member/edit/'.$print->id}}" class="btn btn-sm btn-primary"><i class="fas fa-wrench"></i></a> &nbsp;
+                <a href="{{asset('').'admin/member/delete/'.$print->id}}" class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
       @endforeach

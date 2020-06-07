@@ -15,7 +15,7 @@ label.error {
 <div class="card-header">
     <h3 class="card-title">Thêm sản phẩm </h3>
 </div>
-<form id="add-product-form" action="{{ asset('') . 'admin/trademark/save-add'}}" method="post" enctype="multipart/form-data" style="padding:20px">
+<form id="add-product-form" action="{{ asset('') . 'admin/company/save-add'}}" method="post" enctype="multipart/form-data" style="padding:20px">
             @csrf
             <div class="row">
                 <div class="col-6">
@@ -25,19 +25,19 @@ label.error {
                     </div>  
                     <div class="form-group">
                         <label for="">Địa Chỉ  <span class="text-danger">*</span></label>
-                        <input type="text" name="country" class="form-control " placeholder="Nhập tên sản phẩm">
+                        <input type="text" name="address" class="form-control " placeholder="Nhập tên sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="">Email  <span class="text-danger">*</span></label>
-                        <input type="text" name="country" class="form-control " placeholder="Nhập tên sản phẩm">
+                        <input type="email" name="email" class="form-control " placeholder="Nhập tên sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="">Số Điện Thoại  <span class="text-danger">*</span></label>
-                        <input type="text" name="country" class="form-control " placeholder="Nhập tên sản phẩm">
+                        <input type="number" name="phone" class="form-control " placeholder="Nhập tên sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="">Số Tài Khoản  <span class="text-danger">*</span></label>
-                        <input type="text" name="country" class="form-control " placeholder="Nhập tên sản phẩm">
+                        <input type="number" name="accnumber" class="form-control " placeholder="Nhập tên sản phẩm">
                     </div>
 
                 </div>
@@ -95,20 +95,34 @@ label.error {
                     name: {
                     required: true,
                     minlength: 2,
-                    remote: {
-                            url: "{{ asset('') . 'admin/trademark/check-name'}}",
-                            type: "post",
-                            data: {
-                                "_token": "{{ csrf_token() }}",
-                                name: function() {
-                                    return $( "input[name='name']" ).val();
-                                }
-                            }
-                        }
+                    // remote: {
+                    //         url: "{{ asset('') . 'admin/company/check-name'}}",
+                    //         type: "post",
+                    //         data: {
+                    //             "_token": "{{ csrf_token() }}",
+                    //             name: function() {
+                    //                 return $( "input[name='name']" ).val();
+                    //             }
+                    //         }
+                    //     }
                     },
-                    country:{
+                    address:{
                         required: true,
                         minlength: 2
+                    },
+                    email:{
+                        required: true,
+                        email: true
+                    },
+                    phone:{
+                        required: true,
+                        minlength: 2,
+                        maxlength: 12
+                    },
+                    accnumber:{
+                        required: true,
+                        minlength: 2,
+                        maxlength: 20
                     },
                     image: {
                         required: true,
@@ -118,14 +132,28 @@ label.error {
                 
                 messages:{
                     name: {
-                        required: "Nhập tên sản phẩm",
+                        required: "Nhập tên công ty",
                         minlength: "Tối thiểu 2 ký tự",
-                        remote: "Tên sản phẩm đã tồn tại, vui lòng chọn tên khác",
+                        // remote: "Tên sản phẩm đã tồn tại, vui lòng chọn tên khác",
                        
                     },
-                    country:{
-                        required:"nhập tên quốc gia",
+                    address:{
+                        required:"nhập địa chỉ",
                         minlength: "nhập tối thiểu 2 kí tự"
+                    },
+                    email:{
+                        required:"nhập địa chỉ email",
+                        email: "nhập sai định dạng email rồi"
+                    },
+                    phone:{
+                        required:"nhập số điện thoại",
+                        minlength: "giá trị nhỏ nhất là 2 kí tự",
+                        maxlength: "giá trị lớn nhất là 12 kí tự"
+                    },
+                    accnumber:{
+                        required:"nhập tài khỏan",
+                        minlength: "giá trị nhỏ nhất là 2 kí tự",
+                        maxlength: "giá trị lớn nhất là 20 kí tự"
                     },
                     image: {
                         required: "Hãy chọn ảnh sản phẩm",

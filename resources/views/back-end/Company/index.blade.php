@@ -38,7 +38,7 @@ img{
             <td>{{$print->address}}</td>
             <td>{{$print->phone_number}}</td>
             <td>{{$print->email}}</td>
-            <td>{{$print->logo}}</td>
+            <td><img src="{{asset('') .'giao-dien/images/company/'.$print->logo}}" alt=""></td>
             <td>{{$print->stk}}</td>
             <!-- <td><img src="{{asset('') .$print->logo}}" alt=""></td> -->
                <td>

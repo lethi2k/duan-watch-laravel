@@ -31,8 +31,8 @@ img{
     @foreach($show as $print)
             <tr>
             <td>{{$print->id}}</td>
-            <td>{{$print->user}}</td>
-            <td>{{$print->product_id}}</td>
+            <td>{{$print->User->username}}</td>
+            <td>{{$print->Product->product_name}}</td>
             <td>{{$print->content_comment}}</td>
                <td>
                 <a href="{{asset('').'admin/comment/delete/'.$print->id}}" class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>

@@ -37,4 +37,11 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
      <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
-</body>
+     <script type="text/javascript">
+        //<![CDATA[
+        bkLib.onDomLoaded(function() {
+            nicEditors.allTextAreas()
+        });
+        //]]>
+    </script>
+     <!-- <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script> -->
