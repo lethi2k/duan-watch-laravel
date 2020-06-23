@@ -126,7 +126,7 @@
 
 
                         <div class="search-form-wrapper search-hide" style="display: none;">
-                            <form action="#" class="search-form">
+                            <form action="{{asset('') .'giao-dien/search'}}" class="search-form">
                                 <input type="text" name="search" id="search" class="search-form__input"
                                     placeholder="Nhập sản phẩn cần tìm">
                                 <button type="submit" class="search-form__submit">
@@ -135,8 +135,7 @@
                             </form>
                         </div>
 
-
-
+                        
                         <ul class="header-toolbar-icons">
                             <li class="search-box mr--20" >
                                 <a class="bordered-icon search-btn" aria-expanded="false"><i
@@ -255,53 +254,19 @@
                             </li>
                             <li class="mainmenu__item menu-item-has-children">
                                 <a href="{{asset('') . 'giao-dien/sanpham'}}" class="mainmenu__link">Sẩn Phẩm</a>
-                                <!-- <ul class="megamenu five-column">
-                                            <li>
-                                                <a class="megamenu-title" href="">Patek Philippe</a>
+                                <ul class="megamenu five-column">             
+                                            <li>     
                                                 <ul>
+                                                @foreach($cate_product as $show_category_product)
                                                     <li>
                                                         <a
-                                                            href="https://demo.hasthemes.com/mirora-preview/mirora/shop.html">Left
-                                                            Sidebar</a>
+                                                            href="giao-dien/sanpham?danhmucsp={{$show_category_product->id}}">{{$show_category_product->name}}</a>
                                                     </li>
-                                                    <li>
-                                                        <a
-                                                            href="https://demo.hasthemes.com/mirora-preview/mirora/shop-right-sidebar.html">Right
-                                                            Sidebar</a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="https://demo.hasthemes.com/mirora-preview/mirora/shop-fullwidth.html">Three
-                                                            Column</a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="https://demo.hasthemes.com/mirora-preview/mirora/shop-fullwidth-4-column.html">Four
-                                                            Column</a>
-                                                    </li>
+                                                    @endforeach
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <a class="megamenu-title" href="">Rolex Swiss Made</a>
-                                                <ul>
-                                                    <li>
-                                                        <a
-                                                            href="https://demo.hasthemes.com/mirora-preview/mirora/shop-list-left-sidebar.html">Left
-                                                            Sidebar</a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="https://demo.hasthemes.com/mirora-preview/mirora/shop-list-right-sidebar.html">Right
-                                                            Sidebar</a>
-                                                    </li>
-                                                    <li>
-                                                        <a
-                                                            href="https://demo.hasthemes.com/mirora-preview/mirora/shop-list.html">Full
-                                                            width</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
+
+                                            <!-- <li>
                                                 <a class="megamenu-title" href=""> Omega</a>
                                                 <ul>
                                                     <li>
@@ -356,6 +321,8 @@
                                                     </li>
                                                 </ul>
                                             </li>
+
+
                                             <li>
                                                 <a class="megamenu-title" href="">Tissot</a>
                                                 <ul>
@@ -380,11 +347,12 @@
                                                             Width Slider</a>
                                                     </li>
                                                 </ul>
-                                            </li>
-                                        </ul> -->
+                                            </li> -->
+
+                                        </ul>
                             </li>
                             <li class="mainmenu__item menu-item-has-children has-children">
-                                <a href="#" class="mainmenu__link">Tin Tức</a>
+                                <a href="{{asset('') . 'giao-dien/block'}}" class="mainmenu__link">Tin Tức</a>
                                 <ul class="sub-menu">
                                     @foreach($cateblog as $showcatebl)
                                     <li class="has-children">

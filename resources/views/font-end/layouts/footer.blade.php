@@ -2,7 +2,7 @@
 <footer class="footer border-top ptb--40 ptb-md--30">
             <div class="container">
                 <div class="row mb--40 mb-md--30">
-                    <div class="col-lg-4 col-md-6 mb-md--30">
+                    <div class="col-lg-5 col-md-6 mb-md--30">
                         <div class="footer-widget">
                             <h3 class="widget-title">Về Chúng Tôi</h3>
                             <div class="widget-content mb--20">
@@ -45,7 +45,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-6 mb-md--30">
+                    <div class="col-lg-3 col-md-6 mb-md--30">
                         <div class="footer-widget">
                             <h3 class="widget-title">Thông Tin</h3>
                             <ul class="widget-menu">
@@ -60,7 +60,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-6 mb-sm--30">
+                    <div class="col-lg-4 col-md-6 mb-sm--30">
                         <div class="footer-widget">
                             <h3 class="widget-title">Ngoài Ra</h3>
                             <ul class="widget-menu">
@@ -75,7 +75,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <!-- <div class="col-lg-4 col-md-6">
                         <div class="footer-widget">
                             <h3 class="widget-title">Sản Phẩm Tùy Chỉnh</h3>
                             <div class="widget-product">
@@ -135,7 +135,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row mb--40 mb-md--30">
                     <div class="col-12">

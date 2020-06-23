@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\CategoryProductModel;
+use App\ProductModel;
 use Illuminate\Http\Request;
 class CategoryProduct extends Controller
 {
@@ -91,8 +92,16 @@ class CategoryProduct extends Controller
         if($category == null){
             header("location: " . asset('') . "admin/trademark/index?msg=id không tồn tại");
         }
-        CategoryProductModel::destroy($id);
-        return redirect('admin/trademark/index');
+        
+        $product = ProductModel::where('category_trade','=', $category);
+        if($product == null){
+            return redirect('admin/trademark/index')->with('thongbao','không xóa được do đã liên kết đến sản phẩm');
+        }
+        
+            CategoryProductModel::destroy($id);
+            return redirect('admin/trademark/index')->with('thongbao','Xóa Thành Công');
+        
+        
     }
 
 

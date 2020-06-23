@@ -2,7 +2,7 @@
 @section('content')
 <div class="card card-primary">
 <div class="card-header">
-    <h3 class="card-title">Sửa sản phẩm</h3>
+    <h3 class="card-title">Sửa công ty</h3>
 </div>
 <form id="edit-product-form" action="{{ asset('') . 'admin/company/update/'.$data->id}}" method="post" enctype="multipart/form-data" style="padding:20px">
             @csrf

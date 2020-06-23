@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\CategoryBlogModel;
+use App\BlogModel;
 use Illuminate\Http\Request;
 
 class CategoryBlog extends Controller
@@ -124,8 +125,13 @@ class CategoryBlog extends Controller
         if($category == null){
             header("location: " . asset('') . "admin/category-blog/index?msg=id không tồn tại");
         }
-        CategoryBlogModel::destroy($id);
-        return redirect('admin/category-blog/index');
+        $blog = BlogModel::where('cate_id','=', $id);
+        if($blog == null){
+            return redirect('admin/category-blog/index')->with('thongbao','không xóa được do đã liên kết đến sản phẩm');
+        }else{
+            CateProductModel::destroy($id); 
+            return redirect('admin/category-blog/index')->with('thongbao','Xóa Thành Công');
+        }
     }
 
     public function checkname()

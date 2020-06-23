@@ -18,9 +18,7 @@ class Product extends Controller
      */
     public function index()
     {
-        
-        
-        $data = ProductModel::paginate(10);
+        $data = ProductModel::paginate(5);
         return view('back-end.product.index',['data' => $data]);
     }
 
@@ -46,7 +44,7 @@ class Product extends Controller
     {
         $this -> validate($request,
         [
-            'tensp' =>'required|min:2|max:255',
+            'tensp' =>'required|min:2|max:255|unique:product,product_name',
             'image' =>'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'gia' =>'required|min:1',
             'giamgia' =>'required|min:1',
@@ -59,6 +57,7 @@ class Product extends Controller
             'tensp.required' => 'Bạn chưa nhập tên sản phẩm',
             'tensp.min' => 'độ dài phải từ 2 đến 200 kí tự',
             'tensp.max' => 'độ dài phải từ 2 đến 200 kí tự',
+            'unique' => 'tên sản phẩm đã tồn tại',
 
             'gia.required' => 'Bạn chưa nhập giá',
             'gia.min' => 'độ dài phải từ 2 đến 200 kí tự',
@@ -154,6 +153,42 @@ class Product extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this -> validate($request,
+        [
+            'tensp' =>'required|min:2|max:255',
+            'image' =>'mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gia' =>'required|min:1',
+            'giamgia' =>'required|min:1',
+            'area2' =>'required',
+            'soluong' =>'required|min:1',
+            'sosao' =>'required|min:1|max:5',
+            'mausac' =>'required|min:1|max:255'
+        ],
+        [
+            'tensp.required' => 'Bạn chưa nhập tên sản phẩm',
+            'tensp.min' => 'độ dài phải từ 2 đến 200 kí tự',
+            'tensp.max' => 'độ dài phải từ 2 đến 200 kí tự',
+
+            'gia.required' => 'Bạn chưa nhập giá',
+            'gia.min' => 'độ dài phải từ 2 đến 200 kí tự',
+            
+            'giamgia.required' => 'Bạn chưa nhập giảm giá',
+            'giamgia.min' => 'giá trị phải lớn hơn 1',
+
+            'soluong.required' => 'Bạn chưa nhập số lượng',
+            'soluong.min' => 'giá trị phải lớn hơn 1',
+
+            'sosao.required' => 'Bạn chưa nhập số sao',
+            'sosao.min' => 'giá trị phải lớn hơn 1',
+            'sosao.max' => 'độ dài phải từ 1 đến 5 kí tự',
+
+
+            'area2.required' => 'Bạn chưa mô tả',
+
+            'image.mimes' => 'vui lòng chọn đúng định dạng ảnh',
+            'image.max' => 'Độ dài vượt quá giới hạn',
+        ]);
+
         $model = ProductModel::find($id);
         $model->category_trade = $request->thuonghieu;
         $model->cate_id = $request->danhmuc;
@@ -234,6 +269,61 @@ class Product extends Controller
             header("location: " . asset('') . "admin/product/index?msg=id không tồn tại");
         }
         ImagesModel::destroy($id);
-        return redirect('admin/product/index');
+        return back();
     }
+
+    public function checkname()
+    {
+        $name = $_POST['name_product'];
+	    $id = isset($_POST['id']) ? $_POST['id'] : -1;
+	    $queryData = ProductModel::where('product_name', $name);
+	    if($id != -1){
+	        $queryData->where('id', '<>', $id);
+        } 
+        $numberRecord = $queryData->count();
+        echo $numberRecord == 0 ? "true" : "false";
+    }
+
+
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $product = ProductModel::where('product_name', 'LIKE', '%' . $request->search . '%')->get();
+            if ($product) {
+                foreach ($product as $key => $cate) {
+                    $output .= '<tr>
+                    <td>' . $cate->id . '</td>
+                    <td>' .$cate ->Category ->name . '</td>
+                    <td>' . $cate ->Trademark ->name . '</td>
+                    <td>' . $cate ->product_name . '</td>
+                    <td>
+                        <div class="row">
+                            <div class="w3-content" style="max-width:1200px">
+                                <img class="mySlides" src="giao-dien/images/product/'.$cate->images .'" alt=""
+                                    style="width:100%">
+                            </div>
+                        </div>
+                    </td>
+                    <td>'. $cate->price .'</td>
+                    <td>'. $cate->sale_price .'</td>
+                    <td>'. $cate->detail .'</td>
+                    <td>'. $cate->quantity .'</td>
+                    <td><a href="admin/product/chitiet/'. $cate->id .'" class="btn btn-sm btn-success">Chi
+                            Tiết</a></td>
+                    <td>'. $cate->star .'</td>
+                    <td>'. $cate->color .'</td>
+                    <td>
+                    <a href="'.'admin/product/edit/'.$cate->id.'" class="btn btn-sm btn-primary">Sửa</a> &nbsp
+                    <a href="'.'admin/product/delete/'.$cate->id.'" class="btn btn-sm btn-danger btn-remove">Xóa</a>
+                    </td>
+                    </tr>';
+                }
+            }
+            return Response($output);
+        }
+    }
+
+
+    
 }

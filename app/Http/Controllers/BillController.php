@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\BillModel;
 class BillController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class BillController extends Controller
      */
     public function index()
     {
-        return view('back-end.Bill.index');
+        $data = BillModel::paginate(10);
+        return view('back-end.Bill.index',compact('data'));
     }
 
     /**
@@ -79,6 +80,42 @@ class BillController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Bill = BillModel::find($id);
+        if($Bill == null){
+            header("location: " . asset('') . "admin/hoadon/index?msg=id không tồn tại");
+        }
+        BillModel::destroy($id);
+        return redirect('admin/hoadon/index');
     }
+
+
+    public function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $bill = BillModel::where('status', 'LIKE', '%' . $request->search . '%')->get();
+            if ($bill) {
+                foreach ($bill as $key => $showbill) {
+                    $output .= '<tr>
+                    <td class="sorting_1">'. $showbill->id .'</td>
+                    <td>'. $showbill->name .'</td>
+                    <td>'. $showbill->email .'</td>
+                    <td>'. $showbill->address .'</td>
+                    <td>'. $showbill->phone_number .'</td>
+                    <td>
+                        '. $showbill->type_payment .'
+                    </td>
+                    <td>'. $showbill->User->username .'</td>
+                    <td>    
+                    <a href="admin/hoadon/delete/'. $showbill->id .'" class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>
+                    </td>
+                    </tr>';
+                }
+            }
+            return Response($output);
+        }
+    }
+
+
+
 }

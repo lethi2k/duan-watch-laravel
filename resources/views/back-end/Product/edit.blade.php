@@ -15,17 +15,18 @@ label.error {
 <div class="card-header">
     <h3 class="card-title">Thêm sản phẩm </h3>
 </div>
-<form id="add-product-form" action="{{ asset('') . 'admin/product/update/'.$data->id}}" method="post" enctype="multipart/form-data" style="padding:20px">
+<form id="edit-product-form" action="{{ asset('') . 'admin/product/update/'.$data->id}}" method="post" enctype="multipart/form-data" style="padding:20px">
             @csrf
-            <input type="hidden" name="id" value="{{ $data->id}}">
+           
             <div class="row">
                 <div class="col-6">
+                <input type="hidden" name="id" value="{{ $data->id}}">
                 <div class="form-group">
                         <label for="">Danh mục sản phẩm  <span class="text-danger">*</span></label>
 
                         <select class="form-control" name = "danhmuc">
                            @foreach ($cate as $ca)
-                            <option value="{{ $ca->id }}">{{ $ca->name }}</option>
+                            <option value="{{ $ca->id }}" @if ($ca->id == $data->cate_id ) selected="selected" @endif>{{ $ca->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -34,13 +35,13 @@ label.error {
 
                         <select class="form-control" name = "thuonghieu">
                            @foreach ($trade as $trade)
-                            <option value="{{ $trade->id }}">{{ $trade->name }}</option>
+                            <option value="{{ $trade->id }}"  @if ($trade->id == $data->category_trade ) selected="selected" @endif>{{ $trade->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="">Tên sản phẩm <span class="text-danger">*</span></label>
-                        <input type="text" name="tensp" class="form-control " value = "{!! $data->product_name !!}">
+                        <input type="text" name="tensp" class="form-control " value = "{{ $data->product_name }}">
                     </div>
                     <div class="form-group">
                         <label for="">Giá<span class="text-danger">*</span></label>
@@ -105,8 +106,8 @@ label.error {
                     
                 </div>
                 <div class="col-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-sm btn-primary">Tạo</button>&nbsp;
-                    <a href="{{ asset('').'admin/slider/index'}}" class="btn btn-sm btn-danger">Hủy</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Sửa</button>&nbsp;
+                    <a href="{{ asset('').'admin/product/index'}}" class="btn btn-sm btn-danger">Hủy</a>    
                 </div>
             </div>
         </form>
@@ -145,19 +146,20 @@ label.error {
             }
             reader.readAsDataURL(file);
         }
+        
         $(document).ready(function() {
-            $('#add-product-form').validate({
+            $('#edit-product-form').validate({
                 rules:{
-                    name: {
+                    tensp: {
                     required: true,
                     minlength: 2,
                     remote: {
-                            url: "{{ asset('') . 'admin/slider/check-name'}}",
+                            url: "{{ asset('') . 'admin/product/check-name'}}",
                             type: "post",
                             data: {
                                 "_token": "{{ csrf_token() }}",
-                                name: function() {
-                                    return $( "input[name='name']" ).val();
+                                name_product: function() {
+                                    return $( "input[name='tensp']" ).val();
                                 },
                                 id: function() {
                                     return $( "input[name='id']" ).val();
@@ -165,13 +167,27 @@ label.error {
                             }
                         }
                     },
-                    title:{
+                    gia:{
                         required: true,
-                        minlength: 2
+                        min: 1,
+                        
                     },
-                    area1:{
+                    giamgia:{
                         required: true,
-                        minlength: 2
+                        min: 1
+                    },
+                    image: {
+                        required: true,
+                        extension: "jpg|png|jpeg|gif|svg"
+                    },
+                    soluong:{
+                        required: true,
+                        min: 1
+                    },
+                    sosao:{
+                        required: true,
+                        min: 1,
+                        max: 5
                     },
                     image: {
 
@@ -180,19 +196,28 @@ label.error {
                 },
                 
                 messages:{
-                    name: {
+                    tensp: {
                         required: "Nhập tên sản phẩm",
                         minlength: "Tối thiểu 2 ký tự",
-                        remote: "Tên sản phẩm đã tồn tại, vui lòng chọn tên khác",
+                        remote: "Tên sản phẩm đã tồn tại, vui lòng chọn tên khác"
                        
                     },
-                    title:{
-                        required:"nhập tiêu đề",
-                        minlength: "nhập tối thiểu 2 kí tự"
+                    gia:{
+                        required:"nhập giá sản phẩm",
+                        min: "giá trị nhỏ nhất là 1"
                     },
-                    area1:{
-                        required:"nhập nội dung",
-                        minlength: "nhập tối thiểu 2 kí tự"
+                    giamgia:{
+                        required:"nhập giảm giá",
+                        min: "giá trị nhỏ nhất là 1"
+                    },
+                    soluong:{
+                        required:"nhập số lượng",
+                        min: "giá trị nhỏ nhất là 1"
+                    },
+                    sosao:{
+                        required:"nhập số sao",
+                        min: "giá trị nhỏ nhất là 1",
+                        max: "số sao không được vượt quá 5"
                     },
                     image: {
                        

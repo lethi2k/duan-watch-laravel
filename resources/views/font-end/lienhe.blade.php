@@ -62,8 +62,13 @@
                             <div class="col-md-10">
                                 <input type="text" name="contact_name" id="contact_name"
                                     class="form__input form__input--3">
+                                @if ($errors->has('contact_name'))
+                                <p class="help is-danger" style="color:red;">{{ $errors->first('contact_name') }}</p>
+                                @endif
                             </div>
+
                         </div>
+
                         <div class="form-row mb--20">
                             <div class="col-md-2 text-md-right">
                                 <label for="contact_name">
@@ -79,8 +84,12 @@
                             <div class="col-md-10">
                                 <input type="email" name="contact_email" id="contact_email"
                                     class="form__input form__input--3">
+                                @if ($errors->has('contact_email'))
+                                <p class="help is-danger" style="color:red;">{{ $errors->first('contact_email') }}</p>
+                                @endif
                             </div>
                         </div>
+
                         <div class="form-row mb--20">
                             <div class="col-md-2 text-md-right">
                                 <label for="contact_name">
@@ -96,8 +105,12 @@
                             <div class="col-md-10">
                                 <textarea name="contact_message" id="contact_message"
                                     class="form__input form__input--3 form__input--textarea"></textarea>
+                                @if ($errors->has('contact_message'))
+                                <p class="help is-danger" style="color:red;">{{ $errors->first('contact_message') }}</p>
+                                @endif
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="col-12 text-right">
                                 <button type="submit" class="form__submit">
@@ -108,14 +121,7 @@
                             </div>
                         </div>
                         <div class="form__output">
-                            <br><br>
-                            @if(count($errors)>0)
-                            <div class="alert alert-danger">
-                                @foreach($errors->all() as $err)
-                                {{$err}}<br>
-                                @endforeach
-                            </div>
-                            @endif
+
                             @if(session('thongbao'))
                             <div class="alert alert-success">
                                 {{session('thongbao')}}

@@ -13,7 +13,7 @@ input.error {
 @section('content')
 <div class="card card-primary">
     <div class="card-header">
-        <h3 class="card-title">Thêm sản phẩm </h3>
+        <h3 class="card-title">Sửa Quảng Cáo </h3>
     </div>
     <form id="add-product-form" action="{{ asset('') . 'admin/advertisement/update/'.$cate->id}}" method="post"
         enctype="multipart/form-data" style="padding:20px">
@@ -43,7 +43,7 @@ input.error {
             <div class="col-6">
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <img src="{{ asset(''). $cate->images }}" class="img-fluid" id="img-preview">
+                        <img src="{{ asset('').'giao-dien/images/advertisement/'. $cate->images }}" class="img-fluid" id="img-preview">
                     </div>
                 </div>
                 <div class="form-group">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\CateProductModel;
+use App\ProductModel;
 use Illuminate\Http\Request;
 
 class CateProduct extends Controller
@@ -13,7 +14,7 @@ class CateProduct extends Controller
      */
     public function index()
     {
-        $cate = CateProductModel::all();
+        $cate = CateProductModel::paginate(10);
         return view('back-end.CateProduct.index',['cate'=> $cate]);
     }
 
@@ -38,11 +39,11 @@ class CateProduct extends Controller
         $this -> validate($request,[
             'name' =>'required|min:2|max:200'
         ],
-    [
-        'name.required' => 'Bạn chưa nhập tên thể loại',
-        'name.min' => 'độ dài phải từ 2 đến 200 kí tự',
-        'name.max' => 'độ dài phải từ 2 đến 200 kí tự',
-    ]);
+        [
+            'name.required' => 'Bạn chưa nhập tên thể loại',
+            'name.min' => 'độ dài phải từ 2 đến 200 kí tự',
+            'name.max' => 'độ dài phải từ 2 đến 200 kí tự',
+        ]);
     $model = new CateProductModel();
     $model->name = $request->name;
     $model->save();
@@ -103,8 +104,13 @@ class CateProduct extends Controller
         if($category == null){
             header("location: " . asset('') . "admin/category-product/index?msg=id không tồn tại");
         }
-        CateProductModel::destroy($id);
-        return redirect('admin/category-product/index');
+        $product = ProductModel::where('cate_id' == $id);
+        if($product == null){
+            return redirect('admin/category-product/index')->with('thongbao','không xóa được do đã liên kết đến sản phẩm');
+        }else{
+            CateProductModel::destroy($id);
+            return redirect('admin/category-product/index')->with('thongbao','Xóa Thành Công');
+        }
     }
 
     public function checkname()

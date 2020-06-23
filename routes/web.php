@@ -16,14 +16,16 @@ Route::get('/', 'HomeController@index');
 Route::get('admin/dangnhap', 'Users@getLoginAdmin');
 Route::post('admin/dangnhap', 'Users@postLoginAdmin');
 Route::get('admin/dangxuat', 'Users@logoutAdmin');
-// Route::get('test', 'Controller@Dangnhap');
+Route::get('test', 'HomeController@test');
 
 Route::group(['prefix' => 'giao-dien'], function () {
     Route::get('sanpham', 'HomeController@sanpham');
     Route::get('ctsp/{id}', 'HomeController@chitietsanpham');
+    Route::get('search', 'HomeController@searchSanPham');
     Route::post('add-comment-product/{id}', 'HomeController@addcommentproduct')->middleware('LoginBase');
     // Route::get('cat', 'HomeController@giohang');
     Route::get('block/{id}','HomeController@blog');
+    Route::get('block','HomeController@showbv');
     Route::get('ctbl/{id}', 'HomeController@ctbl');
     Route::post('save-add/{id}', 'HomeController@addcommentbl')->middleware('LoginBase');
     Route::get('gt', 'HomeController@gioithieu');
@@ -33,20 +35,28 @@ Route::group(['prefix' => 'giao-dien'], function () {
     Route::post('dangnhap', 'HomeController@postdangnhap');
     Route::get('dangxuat', 'HomeController@logoutdangnhap');
     Route::get('dangki', 'HomeController@dangki');
+    Route::post('dangki', 'HomeController@adduser');
+    Route::get('laymk', 'HomeController@getResetPassworld');
+    Route::post('laymk', 'HomeController@postResetPassworld');
+    Route::get('pass/reset', 'HomeController@getChanePassworld')->name('user.reset_password.get');
+    Route::post('pass/reset', 'HomeController@postChanePassworld')->name('user.reset_password.post');
+
+    // Route::get('sendmail', 'HomeController@sendmail');
+
     Route::get('lienhe', 'HomeController@lienhe');
     Route::get('addorder', 'HomeController@addorder');
+    Route::get('deletecart', 'HomeController@deletecart');
     Route::post('lienhe', 'HomeController@postfeedback')->middleware('LoginBase');
     Route::get('addcart/{id}', 'HomeController@addcart')->middleware('LoginBase');
     Route::get('showcart', 'HomeController@showcart')->name('giaodien.showcart')->middleware('LoginBase');
     Route::get('removecart/{id}', 'HomeController@removecart')->name('giaodien.removecart')->middleware('LoginBase');
     Route::get('updatecart/{id}', 'HomeController@updatecart')->name('giaodien.updatecart')->middleware('LoginBase');
+    Route::get('viewproduct/{id}','HomeController@shownhanhsp');
 });
 
 Route::group(['prefix' => 'admin','middleware' => 'adminLogin'], function () {
     
-    Route::get('index', function () {
-        return view('back-end.index');
-    });
+    Route::get('index','HomeAdmin@index');
     Route::group(['prefix' => 'trademark'], function () {
         Route::get('index','CategoryProduct@index');
         Route::get('add','CategoryProduct@create');
@@ -163,6 +173,11 @@ Route::group(['prefix' => 'admin','middleware' => 'adminLogin'], function () {
     });
     Route::group(['prefix' => 'donhang'], function () {
         Route::get('index','OrderController@index');
+        Route::get('edit/{id}','OrderController@edit');
+
+        Route::get('export','OrderController@exportFile');
+        
+        Route::post('update/{id}','OrderController@update');
         Route::get('delete/{id}','OrderController@destroy');
         Route::post('check-name','OrderController@checkname');
         Route::get('search','OrderController@search');

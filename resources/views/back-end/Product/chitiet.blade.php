@@ -31,7 +31,7 @@ img {
         </thead>
         <tbody>
             <tr role="row" class="odd">
-                <td class="sorting_1">{{$data -> metal}}</td>
+                <td class="sorting_1">{!!$data -> metal!!}</td>
             </tr>
 
         </tbody>

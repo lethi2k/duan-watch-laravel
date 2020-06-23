@@ -138,13 +138,15 @@
                                     <div class="product-details-action-top d-flex align-items-center mb--20">
                                         <div class="quantity">
                                             <span>Qty: </span>
-                                            <input type="number" name="qty" id="pro_qty"
-                                                value="1" min="1" style ="width:50px">
+                                            <input type="number" name="qty" id="pro_qty" value="1" min="1"
+                                                style="width:50px">
 
                                         </div>
-                                        <button type="button" class="btn btn-medium btn-style-2 add-to-cart">
-                                            Thêm Vào Giỏ Hàng
-                                        </button>
+                                        <a href="{{asset('') . 'giao-dien/addcart/' . $product_detail->id }}">
+                                            <button type="button" class="btn btn-medium btn-style-2 add-to-cart">
+
+                                                Thêm Vào Giỏ Hàng
+                                            </button></a>
                                     </div>
 
                                 </div>
@@ -200,7 +202,7 @@
                                 aria-labelledby="nav-desc-tab">
 
                                 <p class="product-details-description">
-                                    {{$product_detail->metal}}
+                                    {!!$product_detail->metal!!}
                                 </p>
                             </div>
                             <div class="tab-pane" role="tabpanel" id="nav-details" aria-labelledby="nav-details-tab">
@@ -241,12 +243,19 @@
                                         @foreach($comment_product as $show_comment_product)
                                         <div class="review__single">
                                             <div class="review__meta">
-                                            <img src="{{asset('') .'giao-dien/images/user/'.$show_comment_product->User->logo}}" alt="comment" style ="width:50px">
+                                                <img src="{{asset('') .'giao-dien/images/user/'.$show_comment_product->User->logo}}"
+                                                    alt="comment" style="width:50px">
                                                 <p class="review__author">{{$show_comment_product->User->username}}</p>
                                                 <!-- <p class="review__date">Thứ 2, 20-12-2020</p> -->
-                                                <button type="button" class="btn btn-medium btn-style-2 my-2">
-                                                    Xóa
+                                                @if(Auth::user())
+                                                    @if (Auth::user()->username == $show_comment_product->User->username)
+                                                    <form method="get" id ="form_oder">
+                                                    <button type="submit" class="btn btn-medium btn-style-2 my-2 deletecomment" name = "deletecomment">
+                                                    <a href="{{asset('') . 'giao-dien/ctsp/'.$product_detail->id .'?deletecomment='.$show_comment_product->id}}">Xóa</a>
                                                 </button>
+                                                </form>
+                                                    @endif
+                                                @endif
                                             </div>
                                             <div class="review__content">
                                                 <p class="review__text">
@@ -318,17 +327,17 @@
                                     </form>
                                     <br><br>
                                     @if(count($errors)>0)
-                            <div class="alert alert-danger">
-                                @foreach($errors->all() as $err)
-                                {{$err}}<br>
-                                @endforeach
-                            </div>
-                            @endif
-                            @if(session('thongbao'))
-                            <div class="alert alert-success">
-                                {{session('thongbao')}}
-                            </div>
-                            @endif
+                                    <div class="alert alert-danger">
+                                        @foreach($errors->all() as $err)
+                                        {{$err}}<br>
+                                        @endforeach
+                                    </div>
+                                    @endif
+                                    @if(session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{session('thongbao')}}
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -357,8 +366,8 @@
                                     <div class="mirora-product slick-slide slick-cloned" data-slick-index="-5"
                                         aria-hidden="true" style="width: 232px;" tabindex="-1">
                                         <div class="product-img">
-                                            <img src="./giao-dien/images/6-450x450.jpg" alt="Product"
-                                                class="primary-image">
+                                            <img src="{{asset('') .'giao-dien/images/product/'.$show_related_product->images}}"
+                                                alt="Product" class="primary-image">
                                             <img src="./giao-dien/images/6-6-450x450.jpg" alt="Product"
                                                 class="secondary-image">
                                             <div class="product-img-overlay">
@@ -372,7 +381,7 @@
                                         </div>
                                         <div class="product-content text-center">
                                             <span>{{ $show_related_product->name }}</span>
-                                            <h4><a href="product-details.html"
+                                            <h4><a href="{{asset('') . 'giao-dien/ctsp/'.$show_related_product->id}}"
                                                     tabindex="-1">{{$show_related_product->product_name}}</a></h4>
                                             <div class="product-price-wrapper">
                                                 <span class="money">{{number_format($show_related_product->price)}}.
@@ -395,14 +404,14 @@
                                                 </span>
                                             </div>
                                             <p>
-                                                {{$show_related_product->detail}}
+                                                {!!$show_related_product->detail!!}
                                             </p>
                                             <div class="product-action">
                                                 <a class="same-action" href="wishlist.html" title="wishlist"
                                                     tabindex="-1">
                                                     <i class="fa fa-heart-o"></i>
                                                 </a>
-                                                <a class="add_cart cart-item action-cart" href="cart.html"
+                                                <a class="add_cart cart-item action-cart" href="{{asset('') . 'giao-dien/addcart/' . $show_related_product->id }}"
                                                     title="wishlist" tabindex="-1"><span>Add to cart</span></a>
                                                 <a class="same-action compare-mrg" data-toggle="modal"
                                                     data-target="#productModal" href="compare.html" tabindex="-1">
@@ -427,5 +436,11 @@
 
 @endsection
 @section('js')
-
+<!-- <script>
+$(function(){
+    $('.deletecomment').change(function(){
+        $('#form_oder').submit();
+    })
+})
+</script> -->
 @endsection

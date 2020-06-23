@@ -37,6 +37,7 @@ img {
                 <th>Chi tiết</th>
                 <th>Số sao</th>
                 <th>Màu sắc</th>
+                <th>Lượt Xem</th>
                 <th>Edit</th>
             </tr>
         </thead>
@@ -55,7 +56,7 @@ img {
                             <div class="w3-row-padding w3-section">
                                 <?php $i = 1 ?>
                                 @foreach($inra->ShowImages as $show)
-                                <div class="w3-col s4">
+                                <div class="w3-col s4 my-2">
                                     <img class="demo w3-hover-opacity-off"
                                         src="{{asset('').'giao-dien/images/product/'.$show->images}}"
                                         style="cursor:pointer; width:90%" onclick="currentDiv({!! $i !!})">
@@ -65,18 +66,18 @@ img {
                             </div>
 
                         </div>
-
                     </div>
                 </td>
                 <td>{{$inra -> price}}</td>
                 <td>{{$inra -> sale_price}}</td>
-                <td>{{$inra -> detail}}</td>
+                <td>{!!$inra -> detail!!}</td>
                 <td>{{$inra -> quantity}}</td>
                 <td><a href="{{asset('').'admin/product/chitiet/'.$inra->id}}" class="btn btn-sm btn-success">Chi
                         Tiết</a></td>
                 <td>{{$inra -> star}}</td>
                 <td>{{$inra -> color}}</td>
-                <td><a href="{{asset('').'admin/product/edit/'.$inra->id}}" class="btn btn-sm btn-primary"><i
+                <td>{{$inra -> view_count}}</td>
+                <td><a href="{{asset('').'admin/product/edit/'.$inra->id}}" class="btn btn-sm btn-primary my-2"><i
                             class="fas fa-wrench"></i></a> &nbsp;
                     <a href="{{asset('').'admin/product/delete/'.$inra->id}}"
                         class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a></td>
@@ -85,6 +86,7 @@ img {
 
         </tbody>
     </table>
+    {{ $data->links() }}
 </div>
 @if(session('thongbao'))
 <div class="alert alert-success">
@@ -120,8 +122,7 @@ $('#search').on('keyup', function() {
     $value = $(this).val();
     $.ajax({
         type: 'get',
-        url: '{{ URL::to('
-        admin / slider / search ') }}',
+        url: '{{ URL::to('admin/product/search') }}',
         data: {
             'search': $value
         },
@@ -176,4 +177,7 @@ function showDivs(n) {
 }
 </script>
 
+<script>
+
+</script>
 @endsection

@@ -13,7 +13,7 @@ label.error {
 @section('content')
 <div class="card card-primary">
 <div class="card-header">
-    <h3 class="card-title">Thêm sản phẩm </h3>
+    <h3 class="card-title">Sửa Hóa Đơn </h3>
 </div>
 <form id="add-product-form" action="{{ asset('') . 'admin/slider/update/'.$cate->id}}" method="post" enctype="multipart/form-data" style="padding:20px">
             @csrf

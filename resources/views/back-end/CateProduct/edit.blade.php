@@ -13,9 +13,9 @@ label.error {
 @section('content')
 <div class="card card-primary">
 <div class="card-header">
-    <h3 class="card-title">Thêm sản phẩm </h3>
+    <h3 class="card-title">Sửa danh mục sản phẩm </h3>
 </div>
-<form id="add-product-form" action="{{ asset('') . 'admin/category-product/update/'.$cate->id}}" method="post" enctype="multipart/form-data" style="padding:20px">
+<form id="edit-product-form" action="{{ asset('') . 'admin/category-product/update/'.$cate->id}}" method="post" enctype="multipart/form-data" style="padding:20px">
             @csrf
             <div class="row">
                 <div class="col-6">
@@ -27,7 +27,7 @@ label.error {
                     
                 </div>
                 <div class="col-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-sm btn-primary">Tạo</button>&nbsp;
+                    <button type="submit" class="btn btn-sm btn-primary">Sửa</button>&nbsp;
                     <a href="{{ asset('').'admin/category-product/index'}}" class="btn btn-sm btn-danger">Hủy</a>
                 </div>
             </div>
@@ -52,7 +52,7 @@ label.error {
     <script>
 
         $(document).ready(function() {
-            $('#add-product-form').validate({
+            $('#edit-product-form').validate({
                 rules:{
                     name: {
                     required: true,

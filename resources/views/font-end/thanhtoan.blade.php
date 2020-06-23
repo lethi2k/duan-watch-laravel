@@ -23,7 +23,7 @@
                     <div class="user-actions">
                         <div class="row">
                             <div class="col-12">
-                               
+
                                 <div class="user-actions__single user-actions__coupon">
                                     <h3><i class="fa fa-cube"></i>Thanh Toán Sản Phẩm</h3>
                                     <div id="coupon_info"
@@ -55,7 +55,7 @@
                                     <h2>Chi tiết thanh toán</h2>
                                 </div>
                                 <div class="checkout-form">
-                                    <form action="#" class="form">
+                                    <form action="{{asset('') . 'giao-dien/addorder'}}" class="form">
                                         <div class="form-row mb--30">
                                             <div class="form__group col-md-12 mb-sm--30">
                                                 <label for="billing_fname" class="form__label">Họ Và
@@ -63,49 +63,72 @@
                                                 <input type="text" name="billing_fname" id="billing_fname"
                                                     class="form__input form__input--2">
                                             </div>
+                                            @if ($errors->has('billing_fname'))
+                                            <p class="help is-danger" style="color:red;">
+                                                {{ $errors->first('billing_fname') }}</p>
+                                            @endif
 
                                         </div>
-                                        
+
                                         <div class="form-row mb--30">
                                             <div class="form__group col-12">
                                                 <label for="billing_streetAddress" class="form__label">Địa Chỉ</label>
                                                 <input type="text" name="billing_streetAddress"
                                                     id="billing_streetAddress" class="form__input form__input--2">
                                             </div>
+                                            @if ($errors->has('billing_streetAddress'))
+                                            <p class="help is-danger" style="color:red;">
+                                                {{ $errors->first('billing_streetAddress') }}</p>
+                                            @endif
                                         </div>
-                                       
-                                        <div class="form-row mb--30">
-                                            <div class="form__group col-12">
-                                                <label for="billing_city" class="form__label">Town/City
-                                                    <span>*</span></label>
-                                                <input type="text" name="billing_city" id="billing_city"
-                                                    class="form__input form__input--2">
-                                            </div>
-                                        </div>
-                                       
+
                                         <div class="form-row mb--30">
                                             <div class="form__group col-md-6 mb-sm--30">
                                                 <label for="billing_phone" class="form__label">Số điện thoại</label>
                                                 <input type="text" name="billing_phone" id="billing_phone"
                                                     class="form__input form__input--2">
+                                                @if ($errors->has('billing_phone'))
+                                                <p class="help is-danger" style="color:red;">
+                                                    {{ $errors->first('billing_phone') }}</p>
+                                                @endif
                                             </div>
                                             <div class="form__group col-md-6">
                                                 <label for="billing_email" class="form__label">Email
                                                     <span>*</span></label>
                                                 <input type="email" name="billing_email" id="billing_email"
                                                     class="form__input form__input--2">
+                                                @if ($errors->has('billing_email'))
+                                                <p class="help is-danger" style="color:red;">
+                                                    {{ $errors->first('billing_email') }}</p>
+                                                @endif
                                             </div>
+
                                         </div>
-                                    
+
                                         <div class="form-row">
                                             <div class="form__group col-12">
                                                 <label for="orderNotes" class="form__label">Ghi Chú</label>
                                                 <textarea class="form__input form__input--2 form__input--textarea"
                                                     id="orderNotes" name="orderNotes"
                                                     placeholder="Ghi chú về đơn đặt hàng của bạn, ví dụ ghi chú đặc biệt để giao hàng."></textarea>
+
                                             </div>
+                                            @if ($errors->has('orderNotes'))
+                                            <p class="help is-danger" style="color:red;">
+                                                {{ $errors->first('orderNotes') }}</p>
+                                            @endif
+                                        </div>
+                                        <div class="payment-btn-group">
+                                            <button type="submit" class="btn btn-style-3">Thanh Toán</button>
                                         </div>
                                     </form>
+
+                                    @if(session('thongbao'))
+                                    <div class="alert alert-success">
+                                        {{session('thongbao')}}
+                                    </div>
+                                    @endif
+
                                 </div>
                             </div>
                             <div class="col-lg-6 mt-md--30">
@@ -115,26 +138,33 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
+                                                    <th>Ảnh Sản Phẩm</th>
                                                     <th>Sản Phẩm</th>
+                                                    <th>Số lượng</th>
                                                     <th>Giá</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @if(isset($items))
+                                                @if(isset($items))
                                                 @foreach($items as $showcart)
                                                 <tr>
-                                                    <td>{{$showcart->associatedModel->product_name}} <strong>x {{$showcart->quantity}}</strong></td>
+                                                    <td><img src="{{asset('') .'giao-dien/images/product/'.$showcart->associatedModel->images}}"
+                                                            alt="product"></td>
+                                                    <td>{{$showcart->associatedModel->product_name}} </td>
+                                                    <td><strong>x {{$showcart->quantity}}</strong></td>
                                                     <td>{{number_format($showcart->associatedModel->price)}}, VNĐ</td>
                                                 </tr>
                                                 @endforeach
-                                            @endif   
+                                                @endif
                                             </tbody>
                                             <tfoot>
-                                               
-                                               
+
+
                                                 <tr class="order-total">
-                                                    <th>Tổng thanh toán</th>
-                                                    <td><span class="order-total-ammount">{{ number_format(\Cart::session(Auth::user()->id)->getTotal())}} , VNĐ</span></td>
+                                                    <th colspan="2">Tổng thanh toán</th>
+                                                    <td colspan="2"><span
+                                                            class="order-total-ammount">{{ number_format(\Cart::session(Auth::user()->id)->getTotal())}}
+                                                            , VNĐ</span></td>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -153,8 +183,10 @@
                                             </div> -->
                                             <div class="payment-group">
                                                 <div class="custom-radio payment-radio">
-                                                    <input type="radio" name="payment-method" id="cash" checked>
-                                                    <label class="payment-label" for="cash">Thanh Toán Khi Nhận Hàng</label>
+                                                    <input type="radio" name="payment_method" id="cash" checked
+                                                        value="1">
+                                                    <label class="payment-label" for="cash">Thanh Toán Khi Nhận
+                                                        Hàng</label>
                                                 </div>
                                                 <div class="payment-info">
                                                     <p>Thanh Toán Bằng Tiền Mặt Khi Nhận Hàng</p>
@@ -162,8 +194,8 @@
                                             </div>
                                             <div class="payment-group">
                                                 <div class="custom-radio payment-radio">
-                                                    <input type="radio" value="paypal" name="payment-method"
-                                                        id="paypal">
+                                                    <input type="radio" value="paypal" name="payment_method" id="paypal"
+                                                        value="2">
                                                     <label class="payment-label" for="paypal">
                                                         Thanh toán
                                                         <img src="./giao-dien/images/AM_mc_vs_ms_ae_UK.png"
@@ -183,12 +215,11 @@
                                                         class="form__checkbox">
 
                                                     <label for="termscondition"
-                                                        class="terms-condition-label payment-label">Tôi đã đọc và đồng ý với các điều khoản</label>
+                                                        class="terms-condition-label payment-label">Tôi đã đọc và đồng ý
+                                                        với các điều khoản</label>
                                                 </div>
                                             </div>
-                                            <div class="payment-btn-group">
-                                                <button type="submit" class="btn btn-style-3">Thanh Toán</button>
-                                            </div>
+
                                         </form>
                                     </div>
                                 </div>

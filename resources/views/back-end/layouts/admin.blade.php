@@ -5,7 +5,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <base href="{{asset('')}}">
-  <title>@yield('title', "Fpoly - PT14314-web")</title>
+  <title>@yield('Lê Thi', "Fpoly - PT14311-web")</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   @include('back-end.layouts._share.style')

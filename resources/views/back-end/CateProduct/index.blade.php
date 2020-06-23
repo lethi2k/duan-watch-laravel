@@ -38,6 +38,12 @@ img{
       @endforeach
         </tbody>
     </table>
+    @if(session('thongbao'))
+    <div class="alert alert-success">
+        {{session('thongbao')}}
+    </div>
+    @endif
+    {{ $cate->links() }}
 </div>
 @endsection
 @section('js')

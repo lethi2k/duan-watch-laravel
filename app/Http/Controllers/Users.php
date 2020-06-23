@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\BlogModel;
 class Users extends Controller
 {
     /**
@@ -38,9 +39,9 @@ class Users extends Controller
     {
         $this -> validate($request,
         [
-            'username' =>'required|min:2|max:200|unique:users,username',
+            'username' =>'required|min:2|max:200|unique:users,username|regex:/(^([a-zA-Z]+)(\d+)?$)/u',
             'name' =>'required|min:2|max:200',
-            'email' =>'required|min:2|max:200',
+            'email' =>'required|min:2|max:200|email|unique:users,email',
             'address' =>'required|min:2|max:200',
             'pass' =>'required|min:2|max:200',
             'passagain' =>'required|same:pass',
@@ -52,6 +53,8 @@ class Users extends Controller
             'max' => 'độ dài phải từ 2 đến 200 kí tự',
             'unique' => 'dữ liệu đã tồn tại',
             'passagain.same' => 'mật khẩu nhập lại chưa đúng',
+            'email' => 'phải nhập đúng định dạng email',
+            'regex' => ' user name phải viết liền không dấu',
 
             'image.required' => 'images không được bỏ trống',
             'image.mimes' => 'vui lòng chọn đúng định dạng ảnh',
@@ -110,7 +113,7 @@ class Users extends Controller
         $this -> validate($request,
         [
             'name' =>'required|min:2|max:200',
-            'email' =>'required|min:2|max:200',
+            'email' =>'required|min:2|max:200|email|unique:users,email,'.$id,
             'address' =>'required|min:2|max:200',
             'image' =>'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ],
@@ -118,6 +121,8 @@ class Users extends Controller
             'required' => 'Dữ Liệu Không Được Bỏ Trống',
             'min' => 'độ dài phải từ 2 đến 200 kí tự',
             'max' => 'độ dài phải từ 2 đến 200 kí tự',
+            'unique' => 'dữ liệu đã tồn tại',
+            'email' => 'phải nhập đúng định dạng email',
 
             'image.required' => 'images không được bỏ trống',
             'image.mimes' => 'vui lòng chọn đúng định dạng ảnh',
@@ -166,8 +171,13 @@ class Users extends Controller
         if($User == null){
             header("location: " . asset('') . "admin/member/index?msg=id không tồn tại");
         }
-        User::destroy($id);
-        return redirect('admin/member/index');
+        $blog_user = BlogModel::where('user','=', $id);
+        if($blog_user){
+            return redirect('admin/member/index')->with('thongbao','không xóa được do user đã đăng bài viết');
+        }else{
+            User::destroy($id);
+            return redirect('admin/member/index')->with('thongbao','Xóa Thành Công');
+        }
     }
 
 

@@ -28,7 +28,7 @@
                                     <div class="entry-meta">
                                         <span class="post-author">
                                             <span class="post-by my-2">Đăng Bởi:</span>
-                                            {!! $blog->user!!}
+                                            {!! $blog->User->username!!}
                                         </span>
 
                                         <!-- <span class="post-date">20-12-2020</span> -->
@@ -96,13 +96,21 @@
 
                                         <div class="single-comment">
                                             <div class="comment-avatar">
-                                                <img src="{{asset('') .'giao-dien/images/user/'.$showcommentbl->User->logo}}" alt="comment">
+                                                <img src="{{asset('') .'giao-dien/images/user/'.$showcommentbl->User->logo}}"
+                                                    alt="comment">
                                             </div>
                                             <div class="comment-info">
                                                 <div class="comment-meta">
-                                                    <h5 class="comment-author"><a href="#">{!! $showcommentbl->User->username !!}</a></h5>
+                                                    <h5 class="comment-author"><a href="#">{!!
+                                                            $showcommentbl->User->username !!}</a></h5>
                                                     <!-- <span class="comment-date">{!! $showcommentbl->User->created_at !!}</span> -->
-                                                    <a href="" class="reply">Xóa</a>
+                                                    @if(Auth::user())
+                                                    @if (Auth::user()->username == $showcommentbl->User->username)
+
+                                                    <a href="{{asset('') . 'giao-dien/ctbl/'.$blog->id.'?deletecomment='.$showcommentbl->id}}"
+                                                        class="reply"><button type="submit" name="deletecomment" style="border:none;background-color:rgba(201, 76, 76, 0);color:white">Xóa</button></a>
+                                                    @endif
+                                                    @endif
                                                 </div>
                                                 <div class="comment-content">
                                                     <p>{!! $showcommentbl->content !!}</p>

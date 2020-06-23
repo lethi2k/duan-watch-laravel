@@ -385,6 +385,7 @@ button {
   height: 45rem; }
 
 .pagination {
+  margin: 20px;
   background: transparent;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
@@ -434,8 +435,8 @@ button {
     margin-right: 1rem; }
   .pagination li a {
     width: 3.2rem;
-    height: 3.2rem;
-    line-height: 3.2rem;
+    /* height: 3.2rem;
+    line-height: 3.2rem; */
     text-align: center;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -2849,25 +2850,6 @@ a, button, .corporate-2 i, .sidenav-button, .sidenav-button span, .sidenav-wrapp
     height: 1.5rem;
     background-color: transparent; }
 
-.filter-checkbox input[type="checkbox"] {
-  display: none; }
-  .filter-checkbox input[type="checkbox"]:checked + label:before {
-    content: '\4e'; }
-
-.filter-checkbox label:before {
-  content: '';
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  border: 1px solid #fafafa;
-  font-family: ElegantIcons;
-  font-size: 1.2rem; }
-
-.filter-checkbox label:hover:before {
-  content: '\4e'; }
-
 .filter-radio input[type="radio"] {
   display: none; }
   .filter-radio input[type="radio"]:checked + label:before {
@@ -4512,7 +4494,8 @@ Nice Select
   text-align: left;
   transition: all 0.4s ease-out 0s;
   word-wrap: break-word;
-  z-index: 1; }
+  z-index: 1;
+}
   @media (max-width: 61.94em) {
     .mirora-product {
       padding: 1rem; } }

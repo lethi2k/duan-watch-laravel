@@ -35,7 +35,7 @@
                 <div class="col-6">
                     <div class="row">
                     <div class="col-md-6 offset-md-3">
-                            <img src="{{ asset('') . $cate->images }}" class="img-fluid" id="img-preview">
+                            <img src="{{ asset('') .'giao-dien/images/blog/'. $cate->images }}" class="img-fluid" id="img-preview">
                         </div>
                     </div>
                     <div class="form-group">

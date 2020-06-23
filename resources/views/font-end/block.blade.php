@@ -48,14 +48,13 @@
                                         <div class="entry-meta">
                                             <span class="post-author">
                                                 <span class="post-by">Post By:</span>
-                                                {!! $showblog->user!!}
+                                                {!! $showblog->User->username!!}
                                             </span>
 
 
                                         </div>
                                         <h2 class="post-title"><a
-                                                href="{{asset('') . 'giao-dien/ctbl/'.$showblog->id}}">Blog Image
-                                                Post</a>
+                                                href="{{asset('') . 'giao-dien/ctbl/'.$showblog->id}}">{{ $showblog->name_blog}}</a>
                                         </h2>
                                     </header>
                                     <div class="post-content">
@@ -74,12 +73,7 @@
                             <div class="pagination-wrap">
                                 <p class="page-ammount">Show sản phẩm theo trang</p>
                                 <ul class="pagination">
-                                    <li><a href="" class="first">|&lt;</a></li>
-                                    <li><a href="" class="prev">&lt;</a></li>
-                                    <li><a href="" class="current">1</a></li>
-                                    <li><a href="">2</a></li>
-                                    <li><a href="" class="next">&gt;</a></li>
-                                    <li><a href="" class="next">&gt;|</a></li>
+                                    {{$blog->links()}}
                                 </ul>
                             </div>
                         </div>

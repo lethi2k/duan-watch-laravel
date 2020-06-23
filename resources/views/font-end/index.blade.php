@@ -147,6 +147,7 @@
                                     <div class="slick-track">
 
                                         @foreach($product as $showproduct)
+                                        
                                         <div class="product-carousel-group slick-slide slick-current slick-active"
                                             data-slick-index="0" aria-hidden="false" style="width: 240px;" tabindex="0">
                                             <div class="mirora-product">
@@ -156,17 +157,19 @@
                                                     <img src="./giao-dien/images/1-1-450x450.jpg" alt="Product"
                                                         class="secondary-image">
                                                     <div class="product-img-overlay">
+                                                    <?php $sale = ceil((($showproduct->sale_price - $showproduct->price)/$showproduct->sale_price)*100) ?>
                                                         <span class="product-label discount">
-                                                            -7%
+                                                        {{round($sale,1)}}%
                                                         </span>
                                                         <a data-toggle="modal" data-target="#productModal"
-                                                            class="btn btn-transparent btn-fullwidth btn-medium btn-style-1"
+                                                            class="btn btn-transparent btn-fullwidth btn-medium btn-style-1" id= "btn-style-1"
                                                             tabindex="0">Xem Nhanh</a>
                                                     </div>
                                                 </div>
                                                 <div class="product-content text-center">
+                                                <input type="hidden" name="id" value="{{ $showproduct->id}}">
                                                     <span>{{$showproduct->Trademark->name}}</span>
-                                                    <h4><a href="{{asset('') . 'giao-dien/ctsp'}}"
+                                                    <h4><a href="{{asset('') . 'giao-dien/ctsp/'.$showproduct->id}}"
                                                             tabindex="0">{{$showproduct->product_name}}</a></h4>
                                                     <div class="product-price-wrapper">
                                                         <span class="money">{{number_format($showproduct->price)}}.
@@ -189,7 +192,7 @@
                                                         </span>
                                                     </div>
                                                     <p>
-                                                        {{$showproduct->detail}}
+                                                        {!!$showproduct->detail!!}
                                                     </p>
                                                     <div class="product-action">
                                                         <a class="same-action"
@@ -198,8 +201,8 @@
                                                             <i class="fa fa-heart-o"></i>
                                                         </a>
                                                         <a class="add_cart cart-item action-cart"
-                                                            href="{{asset('') . 'giao-dien/addcart/' . $showproduct->id }}" title="wishlist"
-                                                            tabindex="0"><span>Add to
+                                                            href="{{asset('') . 'giao-dien/addcart/' . $showproduct->id }}"
+                                                            title="wishlist" tabindex="0"><span>Add to
                                                                 cart</span></a>
                                                         <a class="same-action compare-mrg" data-toggle="modal"
                                                             data-target="#productModal"
@@ -251,9 +254,10 @@
                                                         alt="Product" class="primary-image">
                                                     <img src="./giao-dien/images/1-1-450x450.jpg" alt="Product"
                                                         class="secondary-image">
+                                                        <?php $sale = ceil((($showproduct->sale_price - $showproduct->price)/$showproduct->sale_price)*100) ?>
                                                     <div class="product-img-overlay">
                                                         <span class="product-label discount">
-                                                            -7%
+                                                        {{round($sale,1)}}%
                                                         </span>
                                                         <a data-toggle="modal" data-target="#productModal"
                                                             class="btn btn-transparent btn-fullwidth btn-medium btn-style-1"
@@ -262,7 +266,7 @@
                                                 </div>
                                                 <div class="product-content text-center">
                                                     <span>{{$showproduct->Trademark->name}}</span>
-                                                    <h4><a href="{{asset('') . 'giao-dien/ctsp'}}"
+                                                    <h4><a href="{{asset('') . 'giao-dien/ctsp/'.$showproduct->id}}"
                                                             tabindex="0">{{$showproduct->product_name}}</a></h4>
                                                     <div class="product-price-wrapper">
                                                         <span class="money">{{number_format($showproduct->price)}}.
@@ -285,7 +289,7 @@
                                                         </span>
                                                     </div>
                                                     <p>
-                                                        {{$showproduct->detail}}
+                                                        {!!$showproduct->detail!!}
                                                     </p>
                                                     <div class="product-action">
                                                         <a class="same-action"
@@ -294,8 +298,8 @@
                                                             <i class="fa fa-heart-o"></i>
                                                         </a>
                                                         <a class="add_cart cart-item action-cart"
-                                                            href="{{asset('') . 'giao-dien/cat'}}" title="wishlist"
-                                                            tabindex="0"><span>Add to
+                                                            href="{{asset('') . 'giao-dien/addcart/' . $showproduct->id }}"
+                                                            title="wishlist" tabindex="0"><span>Add to
                                                                 cart</span></a>
                                                         <a class="same-action compare-mrg" data-toggle="modal"
                                                             data-target="#productModal"
@@ -344,9 +348,10 @@
                                                         alt="Product" class="primary-image">
                                                     <img src="./giao-dien/images/1-1-450x450.jpg" alt="Product"
                                                         class="secondary-image">
+                                                        <?php $sale = ceil((($showproduct->sale_price - $showproduct->price)/$showproduct->sale_price)*100) ?>
                                                     <div class="product-img-overlay">
                                                         <span class="product-label discount">
-                                                            -7%
+                                                        {{round($sale,1)}}%
                                                         </span>
                                                         <a data-toggle="modal" data-target="#productModal"
                                                             class="btn btn-transparent btn-fullwidth btn-medium btn-style-1"
@@ -355,7 +360,7 @@
                                                 </div>
                                                 <div class="product-content text-center">
                                                     <span>{{$showproduct->Trademark->name}}</span>
-                                                    <h4><a href="{{asset('') . 'giao-dien/ctsp'}}"
+                                                    <h4><a href="{{asset('') . 'giao-dien/ctsp/'.$showproduct->id}}"
                                                             tabindex="0">{{$showproduct->product_name}}</a></h4>
                                                     <div class="product-price-wrapper">
                                                         <span class="money">{{number_format($showproduct->price)}}.
@@ -378,7 +383,7 @@
                                                         </span>
                                                     </div>
                                                     <p>
-                                                        {{$showproduct->detail}}
+                                                        {!!$showproduct->detail!!}
                                                     </p>
                                                     <div class="product-action">
                                                         <a class="same-action"
@@ -387,8 +392,8 @@
                                                             <i class="fa fa-heart-o"></i>
                                                         </a>
                                                         <a class="add_cart cart-item action-cart"
-                                                            href="{{asset('') . 'giao-dien/cat'}}" title="wishlist"
-                                                            tabindex="0"><span>Add to
+                                                            href="{{asset('') . 'giao-dien/addcart/' . $showproduct->id }}"
+                                                            title="wishlist" tabindex="0"><span>Add to
                                                                 cart</span></a>
                                                         <a class="same-action compare-mrg" data-toggle="modal"
                                                             data-target="#productModal"
@@ -438,9 +443,10 @@
                                                         alt="Product" class="primary-image">
                                                     <img src="./giao-dien/images/1-1-450x450.jpg" alt="Product"
                                                         class="secondary-image">
+                                                        <?php $sale = ceil((($showproduct->sale_price - $showproduct->price)/$showproduct->sale_price)*100) ?>
                                                     <div class="product-img-overlay">
                                                         <span class="product-label discount">
-                                                            -7%
+                                                        {{round($sale,1)}}%
                                                         </span>
                                                         <a data-toggle="modal" data-target="#productModal"
                                                             class="btn btn-transparent btn-fullwidth btn-medium btn-style-1"
@@ -449,7 +455,7 @@
                                                 </div>
                                                 <div class="product-content text-center">
                                                     <span>{{$showproduct->Trademark->name}}</span>
-                                                    <h4><a href="{{asset('') . 'giao-dien/ctsp'}}"
+                                                    <h4><a href="{{asset('') . 'giao-dien/ctsp/'.$showproduct->id}}"
                                                             tabindex="0">{{$showproduct->product_name}}</a></h4>
                                                     <div class="product-price-wrapper">
                                                         <span class="money">{{number_format($showproduct->price)}}.
@@ -472,7 +478,7 @@
                                                         </span>
                                                     </div>
                                                     <p>
-                                                        {{$showproduct->detail}}
+                                                        {!!$showproduct->detail!!}
                                                     </p>
                                                     <div class="product-action">
                                                         <a class="same-action"
@@ -481,8 +487,8 @@
                                                             <i class="fa fa-heart-o"></i>
                                                         </a>
                                                         <a class="add_cart cart-item action-cart"
-                                                            href="{{asset('') . 'giao-dien/cat'}}" title="wishlist"
-                                                            tabindex="0"><span>Add to
+                                                            href="{{asset('') . 'giao-dien/addcart/' . $showproduct->id }}"
+                                                            title="wishlist" tabindex="0"><span>Add to
                                                                 cart</span></a>
                                                         <a class="same-action compare-mrg" data-toggle="modal"
                                                             data-target="#productModal"
@@ -534,7 +540,7 @@
             <h5 class="banner__label">Sale Off 20% tất cả sản phẩm</h5>
             <h2 class="banner__name">Giảm Giá Tất Cả Sản Phẩm Nhân Dịp Khai Trương</h2>
             <p class="banner__text mb--50 mb-md--20">Chúng tôi là sự lựa chọn tốt nhất cho bạn</p>
-            <a href="{{asset('') . 'giao-dien/ctbl'}}" class="btn btn-bordered btn-style-1">Mua Ngay</a>
+            <a href="{{asset('') . 'giao-dien/sanpham'}}" class="btn btn-bordered btn-style-1">Mua Ngay</a>
         </div>
     </section>
 
@@ -567,9 +573,10 @@
                                                 alt="Product" class="primary-image">
                                             <img src="./giao-dien/images/1-1-450x450.jpg" alt="Product"
                                                 class="secondary-image">
+                                                <?php $sale = ceil((($showproduct->sale_price - $showproduct->price)/$showproduct->sale_price)*100) ?>
                                             <div class="product-img-overlay">
                                                 <span class="product-label discount">
-                                                    -7%
+                                                {{round($sale,1)}}%
                                                 </span>
                                                 <a data-toggle="modal" data-target="#productModal"
                                                     class="btn btn-transparent btn-fullwidth btn-medium btn-style-1"
@@ -578,7 +585,7 @@
                                         </div>
                                         <div class="product-content text-center">
                                             <span>{{$showproduct->Trademark->name}}</span>
-                                            <h4><a href="{{asset('') . 'giao-dien/ctsp'}}"
+                                            <h4><a href="{{asset('') . 'giao-dien/ctsp/'.$showproduct->id}}"
                                                     tabindex="0">{{$showproduct->product_name}}</a></h4>
                                             <div class="product-price-wrapper">
                                                 <span class="money">{{number_format($showproduct->price)}}. VNĐ</span>
@@ -599,7 +606,7 @@
                                                 </span>
                                             </div>
                                             <p>
-                                                {{$showproduct->detail}}
+                                                {!!$showproduct->detail!!}
                                             </p>
                                             <div class="product-action">
                                                 <a class="same-action"
@@ -608,8 +615,8 @@
                                                     <i class="fa fa-heart-o"></i>
                                                 </a>
                                                 <a class="add_cart cart-item action-cart"
-                                                    href="{{asset('') . 'giao-dien/cat'}}" title="wishlist"
-                                                    tabindex="0"><span>Add to
+                                                    href="{{asset('') . 'giao-dien/addcart/' . $showproduct->id }}"
+                                                    title="wishlist" tabindex="0"><span>Add to
                                                         cart</span></a>
                                                 <a class="same-action compare-mrg" data-toggle="modal"
                                                     data-target="#productModal"
@@ -669,11 +676,10 @@
                                     <div class="blog__content">
                                         <div class="blog__meta">
                                             <p class="blog__author">Post By: <a
-                                                    href="{{asset('') . 'giao-dien/ctbl/'.$showblog->id}}">HasTech</a>
+                                                    href="{{asset('') . 'giao-dien/ctbl/'.$showblog->id}}">{{ $showblog->User->username}}</a>
                                             </p>
                                             <p class="blog__date"><a
-                                                    href="{{asset('') . 'giao-dien/ctbl/'.$showblog->id}}">20 Oct
-                                                    2018</a></p>
+                                                    href="{{asset('') . 'giao-dien/ctbl/'.$showblog->id}}">{{ $showblog->created_at}}</a></p>
                                         </div>
 
                                         <h3 class="blog__title"><a
@@ -698,12 +704,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt--35 mt-md--25">
+            <!-- <div class="row mt--35 mt-md--25">
                 <div class="col-12 text-center">
                     <a href="demo.hasthemes.com/mirora-preview/mirora/instagram.com"
                         class="btn btn-medium btn-style-2"><i class="fa fa-instagram"></i>Danh Mục Bài Viết</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -717,16 +723,15 @@
                 <div class="col-xl-9 col-lg-10">
                     <div class="newsletter text-center">
                         <h3 class="color--white">Đến Với Chúng Tôi</h3>
-                        <p>Typi non habent claritatem insitam est usus legentis in qui facit eorum claritatem,
-                            investigationes demonstraverunt lectores legere me lius quod legunt saepius.</p>
+                        <p>Thương hiệu đồng hồ số 1 việt nam.</p>
 
                         <form class="newsletter-form validate mt--40"
-                            action="http:/devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
+                            
                             method="post" id="mc-embedded-newsletter-form" name="mc-embedded-newsletter-form"
                             target="_blank" novalidate="">
                             <input type="email" name="email" id="sub_email"
-                                placeholder="Enter your email address here.." class="newsletter-form__input">
-                            <input type="submit" value="Subscribe" class="btn newsletter-btn btn-style-1">
+                                placeholder="Nhập địa chỉ email" class="newsletter-form__input">
+                            <input type="submit" value="Đăng kí" class="btn newsletter-btn btn-style-1">
                         </form>
                     </div>
                 </div>
@@ -741,41 +746,183 @@
     <div class="promo-box-area">
         <div class="container-fluid p-0">
             <div class="row no-gutters">
+            @foreach($advertisement_footer as $print_advertisement_footer)
                 <div class="col-md-6 mb-sm--20">
                     <div class="promo">
-                        <a href="{{asset('') . 'giao-dien/ctbl'}}" class="promo__box promo__box-2">
-                            <img src="./giao-dien/images/img1-bottom-mirora1.jpg" alt="Product Category">
+                        <a href="{{asset('') . 'giao-dien/sanpham'}}" class="promo__box promo__box-2">
+                            <img src="{{asset('') .'giao-dien/images/advertisement/'.$print_advertisement_footer->images}}" alt="Product Category">
                             <span class="promo__content promo__content-2">
-                                <span class="promo__label">New Arrivals 2018</span>
-                                <span class="promo__name">Luxury Perfume 2018</span>
-                                <span class="promo__price">Men's and Woman's Accessories</span>
-                                <span class="promo__link">Discover Now</span>
+                                <span class="promo__label">{{$print_advertisement_footer->name}}</span>
+                                <span class="promo__name">{{$print_advertisement_footer->title}}</span>
+                                <span class="promo__price">{{$print_advertisement_footer->content}}</span>
+                                <span class="promo__link">Đến sản phẩm</span>
                             </span>
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="promo">
-                        <a href="{{asset('') . 'giao-dien/ctbl'}}" class="promo__box promo__box-2">
-                            <img src="./giao-dien/images/img2-bottom-mirora1.jpg" alt="Product Category">
-                            <span class="promo__content promo__content-2">
-                                <span class="promo__label">Trending Products 2018</span>
-                                <span class="promo__name">Maurice Lacroix Watch</span>
-                                <span class="promo__price">Only from $162.00 - Sale 20% Off</span>
-                                <span class="promo__link">Discover Now</span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
+            @endforeach
             </div>
         </div>
     </div>
 
     <!-- Promo Box area End -->
-    
+
 </div>
+
+
+
+
+
+<!-- Modal Start -->
+<div class="modal fade product-modal" id="productModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">Đóng</span>
+                        </button>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-6 mb-sm--20">
+                                    <div class="tab-content product-thumb-large">
+
+                                        <div id="thumb1" class="tab-pane active show fade">
+                                            <img class="img_model" alt="product thumb">
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="product-thumbnail">
+                                        <div class="thumb-menu slick-initialized slick-slider" id="modal-thumbmenu">
+                                            <div class="slick-list draggable">
+                                                <div class="slick-track">
+
+                                                    <!-- <div class="thumb-menu-item slick-slide slick-cloned"
+                                                        data-slick-index="-4" aria-hidden="true" style="width: 120px;"
+                                                        tabindex="-1">
+                                                        <a href="thumb3" data-toggle="tab" class="nav-link"
+                                                            tabindex="-1">
+                                                            <img src="./giao-dien/images/10-10-450x450.jpg"
+                                                                alt="product thumb">
+                                                        </a>
+                                                    </div> -->
+
+
+
+
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-6">
+                                    <div class="modal-box product">
+                                        <h3 class="product-title tieudesp" ></h3>
+                                        
+                                        <div class="ratings mb--20">
+                                            <i class="fa fa-star rated"></i>
+                                            <i class="fa fa-star rated"></i>
+                                            <i class="fa fa-star rated"></i>
+                                            <i class="fa fa-star rated"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <ul class="product-detail-list list-unstyled mb--20">
+                                        <li class="my-5">Thương Hiệu: <a class="trade"></a></li>
+                                        <li class="my-5">Nguồn Gốc: <span class = "source"></span></li>
+                                        <li class="my-5">Loại Máy: <span class = "machine"></span></li>
+                                        <li class="my-5">Danh Mục: <span class = "sex"></span></li>
+                                        <li class="my-5">Số lượng: <span class = "guarantee"></span></li>
+                                        </ul>
+                                        <div class="product-price border-bottom pb--20 mb--20">
+                                            <span class="regular-price"></span>
+                                            <span class="sale-price"></span>
+                                        </div>
+                                        <!-- <div class="product-options mb--20">
+                                            <h3>Tùy Chọn</h3>
+                                            <div class="form-group">
+                                                <label class ="my-3"><sup>*</sup>Chọn màu</label>
+                                                <select>
+                                                    <option> --- màu sắc--- </option>
+                                                    <option>Black</option>
+                                                    <option>Blue</option>
+                                                </select>
+                                            </div>
+                                        </div> -->
+                                        <div class="product-action-wrapper mb--20">
+                                            <div class="product-action-top d-flex align-items-center mb--20">
+                                                <div class="quantity">
+                                                    <span>Số lượng: </span>
+                                                    <input type="number" 
+                                                        value="1" min="1" style ="width:100px">
+
+                                                </div>
+                                                
+                                                <button type="button" class="btn btn-medium btn-style-2 add-to-cart mt-5">
+                                                    Thêm Vào Giỏ Hàng
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p class="product-tags">
+                                            Tags: <a
+                                                href="https:/demo.hasthemes.com/mirora-preview/mirora/shop.html">Sport</a>,
+                                            <a
+                                                href="https:/demo.hasthemes.com/mirora-preview/mirora/shop.html">Luxury</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal End -->
+
+
+
+
 
 @endsection
 @section('js')
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$('.btn-style-1').on('click', function() {
+    var id = parseInt($("input[name='id']").val());
+    console.log(id);
+    $.ajax({
+        type: 'get',
+        url: '{{ URL::to('giao-dien/viewproduct') }}' + '/'+id,
+        data: {
+            id: function() {
+                return $("input[name='id']").val();
+            }
+        },
+        success: function(data) {
+            var obj = JSON.parse(data);
+            console.log(obj);
+            console.log($('.tieudesp').text());
+            
+            $('.tieudesp').text(obj.product_name);
+            $('.trade').text(obj.category_trade);
+            $('.source').text(obj.product_name);
+            $('.machine').text();
+            $('.sex').text(obj.cate_id);
+            $('.guarantee').text(obj.quantity);
+            $('.sale-price').text(obj.price);
+            $('.regular-price').text(obj.sale_price);
+            $('.img_model').attr("src","giao-dien/images/product/"+obj.images);   
+        }
+    });
+})
+$.ajaxSetup({
+    headers: {
+        'csrftoken': '{{ csrf_token() }}'
+    }
+});
+</script>
 @endsection

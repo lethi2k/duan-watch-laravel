@@ -118,15 +118,15 @@
                     <a href="{{asset('') . 'admin/hoadon/index'}}" class="nav-link">
                         <i class="nav-icon fa  fa-list-alt"></i>
                         <p>
-                            Hóa Đơn
+                            chi tiết đơn hàng
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{asset('') . 'admin/donhang/index'}}" class="nav-link">
+                            <a href="{{asset('') . 'admin/hoadon/index'}}" class="nav-link">
                                 <i class="fa fa-list-alt nav-icon"></i>
-                                <p>Danh sách Hóa Đơn</p>
+                                <p>Danh sách</p>
                             </a>
                         </li>
 

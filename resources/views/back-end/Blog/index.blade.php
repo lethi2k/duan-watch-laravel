@@ -39,10 +39,10 @@ img{
             <td>{{$print->name_blog}}</td>
             <td>{{$print->meta}}</td>
             <td><img src="{{asset('') .'giao-dien/images/blog/'.$print->images}}" alt=""></td>
-            <td>{{$print->user}}</td>
+            <td>{{$print->User->username}}</td>
             <td><a href="{{asset('').'admin/blog/chitiet/'.$print->id}}"><button type="button" class="btn btn-sm btn-success">Chi Tiết</button></a></td>
                <td>
-                <a href="{{asset('').'admin/blog/edit/'.$print->id}}" class="btn btn-sm btn-primary"><i class="fas fa-wrench"></i></a> &nbsp;
+                <a href="{{asset('').'admin/blog/edit/'.$print->id}}" class="btn btn-sm btn-primary mb-3"><i class="fas fa-wrench"></i></a> &nbsp;
                 <a href="{{asset('').'admin/blog/delete/'.$print->id}}" class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>

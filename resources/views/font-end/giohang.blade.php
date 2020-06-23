@@ -89,7 +89,9 @@
                             </div>
                             <div class="col-12 text-md-right">
                                 <div class="cart-btn-group">
-                                    <a href="giao-dien/addorder" class="btn btn-medium btn-style-3">Cập Nhập Đơn Hàng</a>
+                                @if(\Cart::session(Auth::user()->id)->getTotal() >0)
+                                    <a href="giao-dien/deletecart" class="btn btn-medium btn-style-3">Xóa Toàn Bộ Sản Phẩm</a>
+                                @endif
                                 </div>
 
 
@@ -128,8 +130,10 @@
                                 </tbody>
                             </table>
                         </div>
+                        @if(\Cart::session(Auth::user()->id)->getTotal() >0)
                         <a href="{{asset('') . 'giao-dien/thanhtoan'}}" class="btn btn-medium btn-style-3">Thanh
                             Toán</a>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -44,6 +44,11 @@ img{
       @endforeach
         </tbody>
     </table>
+    @if(session('thongbao'))
+    <div class="alert alert-success">
+        {{session('thongbao')}}
+    </div>
+    @endif
 </div>
 @endsection
 @section('js')
