@@ -92,14 +92,16 @@ class CategoryProduct extends Controller
         if($category == null){
             header("location: " . asset('') . "admin/trademark/index?msg=id không tồn tại");
         }
-        
-        $product = ProductModel::where('category_trade','=', $category);
-        if($product == null){
+        $product = ProductModel::where('category_trade','=', $id)->count();
+        if($product == 0){
+            CategoryProductModel::destroy($id);
+            return redirect('admin/trademark/index')->with('thongbao','Xóa Thành Công');
+            
+        }else{
             return redirect('admin/trademark/index')->with('thongbao','không xóa được do đã liên kết đến sản phẩm');
         }
         
-            CategoryProductModel::destroy($id);
-            return redirect('admin/trademark/index')->with('thongbao','Xóa Thành Công');
+            
         
         
     }

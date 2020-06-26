@@ -17,11 +17,11 @@ class CsvExport implements FromCollection
         foreach ($orders as $row) {
             $order[] = array(
                 '0' => $row->id,
-                '1' => $row->product_id,
+                '1' => $row->Product->product_name,
                 '2' => $row->price,
                 '3' => $row->quantity,
                 '4' => $row->status,
-                '5' => $row->id_order,
+                '5' =>$row->price *  $row->quantity,
             );
         }
 

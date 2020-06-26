@@ -82,10 +82,10 @@ class BillController extends Controller
     {
         $Bill = BillModel::find($id);
         if($Bill == null){
-            header("location: " . asset('') . "admin/hoadon/index?msg=id không tồn tại");
+            header("location: " . asset('') . "admin/donhang/index?msg=id không tồn tại");
         }
         BillModel::destroy($id);
-        return redirect('admin/hoadon/index');
+        return redirect('admin/donhang/index');
     }
 
 

@@ -125,12 +125,13 @@ class CategoryBlog extends Controller
         if($category == null){
             header("location: " . asset('') . "admin/category-blog/index?msg=id không tồn tại");
         }
-        $blog = BlogModel::where('cate_id','=', $id);
-        if($blog == null){
-            return redirect('admin/category-blog/index')->with('thongbao','không xóa được do đã liên kết đến sản phẩm');
-        }else{
-            CateProductModel::destroy($id); 
+        $blog = BlogModel::where('cate_id','=', $id)->count();
+        // dd($blog);
+        if($blog == 0){
+            CategoryBlogModel::destroy($id); 
             return redirect('admin/category-blog/index')->with('thongbao','Xóa Thành Công');
+        }else{
+            return redirect('admin/category-blog/index')->with('thongbao','không xóa được do đã liên kết đến sản phẩm');
         }
     }
 

@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Email <span class="text-danger">*</span></label>
-                    <input type="email" name="email" class="form-control " value = "{!! $data->email !!}">
+                    <input type="email" name="email" class="form-control " value = "{!! $data->email !!}" >
                 </div>
                 <div class="form-group">
                     <label for="">Địa Chỉ <span class="text-danger">*</span></label>
@@ -58,8 +58,8 @@
 
             </div>
             <div class="col-12 d-flex justify-content-end">
-                <button type="submit" class="btn btn-sm btn-primary">Tạo</button>&nbsp;
-                <a href="{{ asset('').'cars'}}" class="btn btn-sm btn-danger">Hủy</a>
+                <button type="submit" class="btn btn-sm btn-primary">Sửa</button>&nbsp;
+                <a href="admin/member/index" class="btn btn-sm btn-danger">Hủy</a>
             </div>
         </div>
     </form>

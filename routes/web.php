@@ -184,7 +184,7 @@ Route::group(['prefix' => 'admin','middleware' => 'adminLogin'], function () {
     });
 
     Route::group(['prefix' => 'hoadon'], function () {
-        Route::get('index','BillController@index');
+        Route::get('index/{id}','OrderController@show');
         Route::get('delete/{id}','BillController@destroy');
         Route::post('check-name','BillController@checkname');
         Route::get('search','BillController@search');

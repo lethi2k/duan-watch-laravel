@@ -12,5 +12,8 @@ class BillModel extends Model
     public function User(){
         return $this->belongsTo('App\User', 'user', 'id');
     }
-   
+
+    public function Order(){
+        return $this->belongsTo('App\OderModel', 'id_oder', 'id');
+    }
 }

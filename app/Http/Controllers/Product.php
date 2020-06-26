@@ -16,10 +16,50 @@ class Product extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = ProductModel::paginate(5);
-        return view('back-end.product.index',['data' => $data]);
+        if ($request->select_cate) 
+        {
+            $select_cate = $request->select_cate;
+            $cate = CateProductModel::all();
+            $trade = CategoryProductModel::all();
+            $data = ProductModel::where('cate_id','=',$select_cate)->paginate(5);
+        }
+        else if ($request->select_trade) {
+            $select_trade = $request->select_trade;
+            $cate = CateProductModel::all();
+            $trade = CategoryProductModel::all();
+            $data = ProductModel::where('category_trade','=',$select_trade)->paginate(5);
+        }
+        else if($request->time)
+        {
+            $time = $request->time;
+            switch ($time) 
+            {
+                case '1':
+                    $cate = CateProductModel::all();
+                    $trade = CategoryProductModel::all();
+                    $data = ProductModel::orderBy('id', 'desc')->paginate(5);
+                    break;
+                case '2':
+                    $cate = CateProductModel::all();
+                    $trade = CategoryProductModel::all();
+                    $data = ProductModel::orderBy('id', 'asc')->paginate(5);
+                    break;
+                default:
+                    $cate = CateProductModel::all();
+                    $trade = CategoryProductModel::all();
+                    $data = ProductModel::paginate(5);
+                    break;
+            }
+        }
+        else{
+            $cate = CateProductModel::all();
+            $trade = CategoryProductModel::all();
+            $data = ProductModel::paginate(5);
+        }
+       
+        return view('back-end.product.index',['data' => $data,'cate' => $cate,'trade' => $trade]);
     }
 
     /**

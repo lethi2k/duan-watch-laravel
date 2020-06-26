@@ -58,7 +58,7 @@
                                             </td>
                                             <td class="cart-product-price">
                                                 <div class="cart-btn-group">
-                                                    <button type = "submit"><a class="btn btn-medium btn-style-3">Cập Nhập Sản Phẩm</a></button>
+                                                    <button type = "submit"><a class="btn btn-medium btn-style-3">Lưu</a></button>
                                                 </div>
                                             </td>
                                             </form>

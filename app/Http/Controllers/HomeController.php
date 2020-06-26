@@ -126,7 +126,7 @@ class HomeController extends Controller
         $model = new CommentBlog();
         $model->idbl = $id; 
         $model->content = $request->comment;
-        $model->user = Auth::user()->id;; 
+        $model->user = Auth::user()->id;
         $model->save();
             return redirect('giao-dien/ctbl/'.$id)-> with('thongbao','thêm thành công');
 
@@ -303,7 +303,7 @@ class HomeController extends Controller
     public function searchSanPham(Request $request){
      
         if($request->thuonghieusp){
-            $product = ProductModel::where('category_trade','=', $request->thuonghieusp)->paginate(20);
+            $product = ProductModel::where('category_trade','=', $request->thuonghieusp)->paginate(10);
             $category_product = CateProductModel::all();
             $trade_product = CategoryProductModel::paginate(5);
             if ($request->price) {
@@ -409,13 +409,13 @@ class HomeController extends Controller
     public function sanpham(Request $request){
 
         if($request->danhmucsp){
-            $product = ProductModel::where('cate_id','=', $request->danhmucsp)->paginate(20);
+            $product = ProductModel::where('cate_id','=', $request->danhmucsp)->paginate(10);
             $category_product = CateProductModel::all();
             $trade_product = CategoryProductModel::paginate(5);
             if ($request->price) {
                 $price = $request->price;
                 switch ($price) {
-                    case '0':
+                    case '6':
                         $product = ProductModel::where('price','<', 1000000)->paginate(5);
                         break;
                     case '1':
@@ -458,13 +458,13 @@ class HomeController extends Controller
         }
         
         if($request->thuonghieusp){
-            $product = ProductModel::where('category_trade','=', $request->thuonghieusp)->paginate(20);
+            $product = ProductModel::where('category_trade','=', $request->thuonghieusp)->paginate(10);
             $category_product = CateProductModel::all();
             $trade_product = CategoryProductModel::paginate(5);
             if ($request->price) {
                 $price = $request->price;
                 switch ($price) {
-                    case '0':
+                    case '6':
                         $product = ProductModel::where('price','<', 1000000)->paginate(5);
                         break;
                     case '1':
@@ -479,7 +479,7 @@ class HomeController extends Controller
                     case '4':
                         $product = ProductModel::whereBetween('price', [4000000, 5000000])->paginate(5);
                         break;
-                    case '4':
+                    case '5':
                         $product = ProductModel::where('price','>', 5000000)->paginate(5);
                         break;
                     
@@ -508,12 +508,12 @@ class HomeController extends Controller
 
         else{
             $category_product = CateProductModel::all();
-            $product = ProductModel::paginate(20);
+            $product = ProductModel::paginate(10);
             $trade_product = CategoryProductModel::paginate(5);
             if ($request->price) {
                 $price = $request->price;
                 switch ($price) {
-                    case '0':
+                    case '6':
                         $product = ProductModel::where('price','<', 1000000)->paginate(5);
                         break;
                     case '1':
@@ -528,7 +528,7 @@ class HomeController extends Controller
                     case '4':
                         $product = ProductModel::whereBetween('price', [4000000, 5000000])->paginate(5);
                         break;
-                    case '4':
+                    case '5':
                         $product = ProductModel::where('price','>', 5000000)->paginate(5);
                         break;
                     
@@ -670,7 +670,7 @@ class HomeController extends Controller
     }
 
 
-    
+    // thêm đơn hàng
     public function addorder(Request $request)
     {
         $userID = Auth::user()->id;
@@ -715,16 +715,6 @@ class HomeController extends Controller
             'billing_streetAddress.max' => 'độ dài địa chỉ phải từ 2 đến 200 kí tự',
         ]);
 
-
-        $bill = new BillModel;
-        $bill->name = $request->billing_fname;
-        $bill->email = $request->billing_email;
-        $bill->address = $request->billing_streetAddress ;
-        $bill->phone_number = $request->billing_phone;  
-        $bill->type_payment = 1;
-        $bill->note = $request->orderNotes;
-        $bill->user = $userID;
-        $bill->save(); 
         foreach($items as $showcart)
         {
                 $model = new OderModel();
@@ -732,9 +722,22 @@ class HomeController extends Controller
                 $model->price = $showcart->price;
                 $model->quantity = $showcart->quantity;
                 $model->status = 1;
-                $model->id_order = $bill->id;
-                $model->save();                
+                $model->save();   
+                
+                $bill = new BillModel;
+                $bill->name = $request->billing_fname;
+                $bill->email = $request->billing_email;
+                $bill->address = $request->billing_streetAddress ;
+                $bill->phone_number = $request->billing_phone;  
+                $bill->type_payment = 1;
+                $bill->note = $request->orderNotes;
+                $bill->id_order = $model->id;
+                $bill->user = $userID;
+                $bill->save(); 
         }
+
+      
+
         \Cart::session($userID)->clear();
         return redirect('')-> with('thongbao','thêm thành công');   
 

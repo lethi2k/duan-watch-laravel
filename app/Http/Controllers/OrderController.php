@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\OderModel;
 use Excel;
 use App\Exports\CsvExport;
+use Carbon\Carbon;
+use App\BillModel;
 class OrderController extends Controller
 {
     /**
@@ -13,10 +15,38 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = OderModel::paginate(10);
+        if ($request->time) 
+        {
+            $time = $request->time;
+            switch ($time) 
+            {
+                case '1':
+                    $data = OderModel::orderBy('created_at', 'desc')->paginate(10);
+                    break;
+                case '2':
+                    $data = OderModel::orderBy('created_at', 'asc')->paginate(10);
+                    break;
+                default:
+                    $data = OderModel::paginate(10);
+                    break;
+            }
+        }
+        else
+        {
+            $data = OderModel::paginate(10);
+        }
+        
         return view('back-end.Order.index',compact('data'));
+        
+    }
+
+
+    public function show($id)
+    {
+        $data = BillModel::where('id_order','=',$id)->get();
+        return view('back-end.Bill.index',compact('data'));
     }
 
     public function exportFile(){
@@ -87,7 +117,18 @@ class OrderController extends Controller
         if($order == null){
             header("location: " . asset('') . "admin/donhang/index?msg=id không tồn tại");
         }
+        BillModel::where('id_order','=', $id)->delete();
         OderModel::destroy($id);
-        return redirect('admin/donhang/index');
+            return redirect('admin/donhang/index')->with('thongbao','xóa thành công');
+        // $order_detail = BillModel::where('id_order','=', $id)->count();
+        // if($order_detail == 0)
+        // {
+        //     OderModel::destroy($id);
+        //     return redirect('admin/donhang/index');
+        // }else
+        // {
+        //     return redirect('admin/donhang/index')->with('thongbao','không xóa được bạn cần xóa chi tiết đơn hàng trước');
+        // }
+        
     }
 }

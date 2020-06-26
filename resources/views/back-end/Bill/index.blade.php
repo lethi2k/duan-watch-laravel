@@ -22,6 +22,7 @@ img {
     </form>
     <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
         aria-describedby="example1_info">
+        
         <thead>
             <tr role="row">
                 <th>id</th>
@@ -59,7 +60,6 @@ img {
         </tbody>
   
     </table>
-    {{ $data->links() }}
 </div>
 @if(session('thongbao'))
 <div class="alert alert-success">

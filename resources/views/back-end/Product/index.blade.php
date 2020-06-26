@@ -12,15 +12,60 @@ img {
     <div class="card-header">
         <h3 class="card-title">Hiện có Hãng Đồng Hồ</h3>
     </div>
-    <form class="form-inline ml-5 my-3">
-        <div class="input-group input-group-sm bg-success">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search"
-                id="search" name="search">
-            <div class="input-group-append">
-                <button class="btn btn-navbar" type="button"><i class="fas fa-search"></i></button>
-            </div>
+
+    <div class="row">
+        <div class="col-sm-3"><br>
+            <form class="form-inline ml-5 my-4">
+                <div class="input-group input-group-sm bg-success">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Tìm kiếm"
+                        aria-label="Search" id="search" name="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+        <div class="form-group col-sm-3 ml-2 my-3">
+            <form method="get" id="form_cate">
+                <label>Select theo danh mục</label>
+                <select class="form-control select_cate" name="select_cate">
+                    <option value="0">Chọn</option>
+                    @foreach($cate as $show_cate)
+                    <option value="{{$show_cate->id}}" @if($show_cate->id == $data['id'] ) selected = "selected" @endif>{{$show_cate->name}}</option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
+
+        <div class="form-group col-sm-3 ml-2 my-3">
+            <form method="get" id="form_trade">
+                <label>Select theo thương hiệu </label>
+                <select class="form-control select_trade" name = "select_trade">
+                    <option value="0">Chọn</option>
+                    @foreach($trade as $show_trade)
+                    <option value = "{{ $show_trade->id}}">{{ $show_trade->name}}</option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
+
+
+        <div class="form-group col-sm-2 ml-2 my-3">
+            <label>select theo thời gian</label>
+            <form method="get" id="form_order">
+                <select class="form-control time" name="time">
+                    <option value="0"
+                        {{Request::get('time') == "0" || !Request::get('time') ? "selected ='selected'" : ""}}>Mặc định
+                    </option>
+                    <option value="1" {{Request::get('time') == "1" ? "selected ='selected'" : ""}}>Mới nhất</option>
+                    <option value="2" {{Request::get('time') == "2" ? "selected ='selected'" : ""}}>Cũ nhất</option>
+                </select>
+            </form>
+        </div>
+
+    </div>
+
+
     <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
         aria-describedby="example1_info">
         <thead>
@@ -98,6 +143,30 @@ img {
 @section('js')
 <script>
 $(document).ready(function() {
+    $('.select_cate').change(function() {
+        $('#form_cate').submit();
+    })
+})
+</script>
+
+<script>
+$(document).ready(function() {
+    $('.select_trade').change(function() {
+        $('#form_trade').submit();
+    })
+})
+</script>
+<script>
+$(document).ready(function() {
+    $('.time').change(function() {
+        $('#form_order').submit();
+    })
+})
+</script>
+
+
+<script>
+$(document).ready(function() {
     $('.btn-remove').on('click', function() {
         Swal.fire({
             title: 'Cảnh báo!',
@@ -122,7 +191,8 @@ $('#search').on('keyup', function() {
     $value = $(this).val();
     $.ajax({
         type: 'get',
-        url: '{{ URL::to('admin/product/search') }}',
+        url: '{{ URL::to('
+        admin / product / search ') }}',
         data: {
             'search': $value
         },

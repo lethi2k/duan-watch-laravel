@@ -22,41 +22,62 @@ img {
     </form>
     <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
         aria-describedby="example1_info">
+
+        <div class="form-group col-sm-4 ml-2">
+            <label>lọc theo</label>
+            <form method="get" id="form_order">
+                <select class="form-control time" name="time">
+                    <option value="0"
+                        {{Request::get('time') == "0" || !Request::get('time') ? "selected ='selected'" : ""}}>Mặc định
+                    </option>
+                    <option value="1" {{Request::get('time') == "1" ? "selected ='selected'" : ""}}>Mới nhất</option>
+                    <option value="2" {{Request::get('time') == "2" ? "selected ='selected'" : ""}}>Cũ nhất</option>
+                </select>
+            </form>
+        </div>
+
         <thead>
-        <a href="{{asset('').'admin/donhang/export'}}" class="btn btn-sm btn-primary col-sm-1 my-2 mx-auto">Xuất file csv</a>
+            <a href="{{asset('').'admin/donhang/export'}}" class="btn btn-sm btn-primary col-sm-1 my-2 mx-auto">Xuất
+                file csv</a>
             <tr role="row">
                 <th>id</th>
-                <th>Product Id</th>
+                <th>Tên sản phẩm</th>
+                <th>ảnh sản phẩm</th>
                 <th>Giá</th>
                 <th>Số Lượng</th>
-                <th>ID Đơn hàng</th>
+                <th>Tổng tiền</th>
+                <th>Chi tiết đơn hàng</th>
                 <th>trạng thái</th>
                 <th>Eidt</th>
             </tr>
         </thead>
         <tbody>
-        @foreach($data as $showorder)
+            @foreach($data as $showorder)
             <tr role="row" class="odd">
                 <td class="sorting_1">{{ $showorder->id}}</td>
                 <td>{{ $showorder->Product->product_name}}</td>
-                <td>{{ $showorder->price}}</td>
+                <td><img class="mySlides" src="{{asset('') .'giao-dien/images/product/'.$showorder->Product->images}}" alt="" style="width:150px"></td>
+                <td>{{ number_format($showorder->price)}},VNĐ</td>
                 <td>{{ $showorder->quantity}}</td>
-                <td>{{ $showorder->id_order}}</td>
+                <td>{{number_format($showorder->price * $showorder->quantity)}}</td>
+                <td><a href="{{asset('') . 'admin/hoadon/index/'.$showorder->id}}" class="btn btn-sm btn-primary">chi tiết đơn hàng</a></td>
                 <td>
-                @if($showorder->status == 0)
-                 Đơn Hàng Trạng Thái Chờ
-                @elseif($showorder->status == 1)
-                  Đã Đặt Hàng
-                @elseif($showorder->status == 2)
-                  Đã Xác Nhận
-                @elseif($showorder->status == 3)
-                  Đặt Hàng Thành Công
-                @endif
+                    @if($showorder->status == 0)
+                    Đơn Hàng Trạng Thái Chờ
+                    @elseif($showorder->status == 1)
+                    Đã Đặt Hàng
+                    @elseif($showorder->status == 2)
+                    Đã Xác Nhận
+                    @elseif($showorder->status == 3)
+                    Đặt Hàng Thành Công
+                    @endif
                 </td>
                 <!-- <td><a href="{{asset('').'admin/donhang/export/'.$showorder->id}}" class="btn btn-sm btn-primary">Xuất file</a></td> -->
                 <td>
-                <a href="{{asset('').'admin/donhang/edit/'.$showorder->id}}" class="btn btn-sm btn-primary"><i class="fas fa-wrench"></i></a> &nbsp;
-                <a href="{{asset('').'admin/donhang/delete/'.$showorder->id}}" class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>
+                    <a href="{{asset('').'admin/donhang/edit/'.$showorder->id}}" class="btn btn-sm btn-primary"><i
+                            class="fas fa-wrench"></i></a> &nbsp;
+                    <a href="{{asset('').'admin/donhang/delete/'.$showorder->id}}"
+                        class="btn btn-sm btn-danger btn-remove"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
             @endforeach
@@ -72,6 +93,15 @@ img {
 
 @endsection
 @section('js')
+<script>
+$(document).ready(function() {
+    $('.time').change(function() {
+        $('#form_order').submit();
+    })
+})
+</script>
+
+
 <script>
 $(document).ready(function() {
     $('.btn-remove').on('click', function() {
@@ -145,4 +175,5 @@ $(function() {
     })
 });
 </script>
+
 @endsection

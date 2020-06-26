@@ -176,9 +176,8 @@
                                 <h3 class="filter-heading">Giá</h3>
                                 <ul class="filter-list">
                                 <li>
-                                        <a class = "{{Request::get('price') == 0 ? 'active' : ''}}" href="{{request()->fullUrlWithQuery(['price'=>0])}}">
+                                        <a class = "{{Request::get('price') == 6 ? 'active' : ''}}" href="{{request()->fullUrlWithQuery(['price'=>6])}}">
                                         <div>
-                                            
                                             <label for="pricerange-1">Dưới 1.000.000 VNĐ </label>
                                         </div>
                                         </a>

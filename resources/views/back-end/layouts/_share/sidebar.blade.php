@@ -113,7 +113,7 @@
                     </ul>
                 </li>
 
-
+<!-- 
                 <li class="nav-item has-treeview">
                     <a href="{{asset('') . 'admin/hoadon/index'}}" class="nav-link">
                         <i class="nav-icon fa  fa-list-alt"></i>
@@ -131,7 +131,7 @@
                         </li>
 
                     </ul>
-                </li>
+                </li> -->
 
                 <li class="nav-item has-treeview">
                     <a href="{{asset('') . 'admin/category-blog/index'}}" class="nav-link">

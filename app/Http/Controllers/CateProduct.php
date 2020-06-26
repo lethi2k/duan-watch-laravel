@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\CateProductModel;
+use Illuminate\Support\Facades\Log;
 use App\ProductModel;
 use Illuminate\Http\Request;
+use Auth;
+use Carbon\Carbon;
 
 class CateProduct extends Controller
 {
@@ -104,12 +107,14 @@ class CateProduct extends Controller
         if($category == null){
             header("location: " . asset('') . "admin/category-product/index?msg=id không tồn tại");
         }
-        $product = ProductModel::where('cate_id' == $id);
-        if($product == null){
-            return redirect('admin/category-product/index')->with('thongbao','không xóa được do đã liên kết đến sản phẩm');
-        }else{
+        $product = ProductModel::where('cate_id','=', $id)->count();
+        if($product == 0){
+            Log::notice('tài khoản '.Auth::user()->username .' đã xóa sản phẩm có id ='.$id .'vào lúc '. Carbon::now('Asia/Ho_Chi_Minh') );
             CateProductModel::destroy($id);
             return redirect('admin/category-product/index')->with('thongbao','Xóa Thành Công');
+           
+        }else{
+            return redirect('admin/category-product/index')->with('thongbao','không xóa được do đã liên kết đến sản phẩm');
         }
     }
 

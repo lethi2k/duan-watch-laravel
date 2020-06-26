@@ -156,7 +156,7 @@ class Users extends Controller
                 $model->password = bcrypt($request->pass);
             };
     $model->save();
-    return redirect('admin/member/index')-> with('thongbao','thêm thành công');
+    return redirect('admin/member/index')-> with('thongbao','sửa thành công');
     }
 
     /**
@@ -171,12 +171,12 @@ class Users extends Controller
         if($User == null){
             header("location: " . asset('') . "admin/member/index?msg=id không tồn tại");
         }
-        $blog_user = BlogModel::where('user','=', $id);
-        if($blog_user){
-            return redirect('admin/member/index')->with('thongbao','không xóa được do user đã đăng bài viết');
-        }else{
+        $blog_user = BlogModel::where('user','=', $id)->count();
+        if($blog_user == 0){
             User::destroy($id);
             return redirect('admin/member/index')->with('thongbao','Xóa Thành Công');
+        }else{
+            return redirect('admin/member/index')->with('thongbao','không xóa được do user đã đăng bài viết');
         }
     }
 
